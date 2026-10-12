@@ -1,131 +1,53 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-header-dark.svg">
-  <img src="docs/assets/readme-header-light.svg" alt="ClaudeFont — fonts, reading layout and colors for Claude desktop" width="1200">
-</picture>
+# ClaudeFont
 
-**Give Claude desktop the fonts and reading layout you prefer.** Set Chinese and English separately, customize code, and save your style as a reusable theme.
+A font and appearance tool for Claude desktop, with separate Chinese and English font settings, reading layout, code styles and theme management.
 
-<p>
-  <a href="https://github.com/Orxooo/claudefont/releases/latest"><img src="https://img.shields.io/badge/Download-A75E46?style=for-the-badge&logo=apple&logoColor=white" alt="Download for macOS" height="30"></a>
-  &nbsp; <a href="README.md">简体中文</a> · <a href="CHANGELOG.md">Changelog</a>
-</p>
+[Download](https://github.com/Orxooo/ClaudeFont/releases/latest) · [简体中文](README.md) · [Changelog](CHANGELOG.md) · [Report an issue](https://github.com/Orxooo/ClaudeFont/issues/new/choose)
 
-Apple Silicon · macOS 26+ · GPL-3.0-only · No Python or Xcode needed at runtime
+Requires an Apple Silicon Mac running macOS 26 or later.
 
-<img src="docs/assets/fonts.png" alt="ClaudeFont font settings with Chinese/English previews and reading layout" width="1200">
+![Font and reading layout settings](docs/assets/fonts.png)
 
-<sub>Screenshots are from V1.0.0 (build 4) and retain the historical claudefont name. Current source uses ClaudeFont. Interface previews use sample content.</sub>
+## Features
 
-## Make it yours
+- **Font settings:** Choose Chinese, English and code fonts separately; adjust font sizes and interface scaling.
+- **Reading layout:** Adjust body line height, paragraph spacing and reading width.
+- **Code styles:** Set fonts and sizes for replies, code blocks, diffs, the editor and terminal.
+- **Appearance:** Configure light backgrounds and dark themes separately.
+- **Theme management:** Save style combinations and import or export them as JSON files.
+- **Backup and restore:** Create a complete backup before applying, use an independent test copy and restore the app when needed.
 
-<table>
-<tr>
-<td width="50%" valign="top"><strong>Separate Chinese and English fonts</strong><br>Choose fonts and sizes for each language, with independent interface scaling.</td>
-<td width="50%" valign="top"><strong>A comfortable reading layout</strong><br>Adjust body line height, paragraph spacing and reading width.</td>
-</tr>
-<tr>
-<td width="50%" valign="top"><strong>Individual code regions</strong><br>Customize replies, code blocks, diffs, the editor and terminal.</td>
-<td width="50%" valign="top"><strong>Light backgrounds and dark themes</strong><br>Coordinate text, links, code and diff colors.</td>
-</tr>
-<tr>
-<td width="50%" valign="top"><strong>Save and share themes</strong><br>Reading, code review and large-text presets, with JSON import/export.</td>
-<td width="50%" valign="top"><strong>Back up, test and restore</strong><br>Complete app backups, independent test copies and operation logs.</td>
-</tr>
-</table>
+## Installation
 
-<details>
-<summary>See Code and Background</summary>
+1. Download the macOS package from [Releases](https://github.com/Orxooo/ClaudeFont/releases/latest).
+2. Extract the ZIP and move the app to Applications.
+3. Open the app and follow the access-check instructions.
 
-**Code:** Set fonts and sizes by region, with corresponding sample previews.
+The package includes the components it needs to run; Python and Xcode are not required. See the [user guide](docs/USAGE.md#installation-and-checksums) for checksum verification and first-launch instructions.
 
-<img src="docs/assets/code.png" alt="Code page with region fonts and sample preview" width="1200">
+## Usage
 
-**Background:** Configure light backgrounds and dark palettes separately.
+1. Select the Claude app in **Overview**. Start with a test copy on first use.
+2. Adjust **Fonts**, **Code** and **Background**, or load a saved combination in **Themes**.
+3. Quit the selected Claude completely, then choose **Apply changes**.
+4. Reopen Claude and check the actual appearance.
 
-<img src="docs/assets/background.png" alt="Background page with light and dark colors" width="1200">
+Previews and loaded themes do not write changes automatically. To undo changes, quit Claude and choose **Restore app** in **More actions**.
 
-</details>
+## Usage notes
 
-## Download, customize, apply
+ClaudeFont modifies and re-signs the selected Claude app, creating a complete backup before applying. Check compatibility after a Claude update before applying settings again.
 
-1. **Install.** Download the macOS ZIP from [Releases](https://github.com/Orxooo/claudefont/releases/latest), verify its checksum, extract it and move the app to Applications.
-2. **Choose a target.** Select Claude and check access in Overview. Start with a test copy.
-3. **Customize and apply.** Choose fonts, code and colors, or load a theme. Quit the target Claude completely, then choose Apply settings.
-4. **Confirm.** Reopen the selected Claude and check the actual appearance. Choose Restore app to undo changes.
+Recorded runtime verification covers startup and font rendering on Claude 2.19675.0. Compatibility with other versions and all code regions still needs confirmation; see the [verification record](docs/VERIFICATION.md).
 
-Closing a window does not quit Claude. Previews and loaded themes do not apply automatically. A complete backup is created before writing, with attempted rollback on failure.
-
-<details>
-<summary>Download checksums and first launch on macOS</summary>
-
-The existing V1.0.0 (build 4) release is signed with an Apple development certificate and is not notarized. If macOS blocks the first launch, verify the source and checksum, then choose Open Anyway in System Settings → Privacy & Security.
-
-Download `SHA256SUMS.txt` and compare the ZIP's digest with the matching filename:
-
-```sh
-shasum -a 256 claudefont-1.0.0-macOS-arm64.zip
-```
-
-Current source builds produce `ClaudeFont.app`; historical packages may still use `claudefont.app`. Each release page lists its filenames and version.
-
-</details>
-
-## Before applying
-
-- **Compatibility:** The [existing verification record](docs/VERIFICATION.md) covers startup and Songti rendering on Claude 2.19675.0. Other versions, all code regions, Cowork / virtual machines and account/network features have not been individually verified. Unrecognized terminal resources reject adaptation.
-- **Apply and restore:** The tool modifies and re-signs Claude; nested components retain their signatures. Restoration requires a complete pristine backup matching the current version. Without one, [reinstall official Claude](https://claude.ai/download).
-- **Test copies and data:** Test copies use separate profiles without copying Main Claude's sign-in or conversations. Operations run locally; update checks contact GitHub Releases.
-
-<details>
-<summary>Setting ranges, themes and updates</summary>
-
-- Font scaling: 80%–150%; body line height: 1.2–2.4×; paragraph spacing: 4–40 px; reading width: 480–1100 px.
-- English changes can cover replies and headings, or also the interface, input and user messages.
-- Light backgrounds and dark themes apply separately, without switching Claude's appearance mode.
-- The terminal retains its own character grid and line height. Code ligatures depend on font support.
-- Themes share style settings, without font files. Missing fonts are reported.
-- Check compatibility after Claude updates before reapplying. Tool updates install manually; same-version builds do not trigger a version notice.
-
-</details>
-
-<details>
-<summary>Apply problems, previous changes and issue reports</summary>
-
-Confirm the font is installed, the correct target is selected and Claude has quit completely. If access is denied, follow the App Management instructions and check again.
-
-For existing font modifications, choose Continue previous changes in Overview. Provide a complete pristine `.app` backup of the same version and a settings folder with `config.json` and optional `themes.json`. Apply after validation succeeds.
-
-Use [Issues](https://github.com/Orxooo/claudefont/issues/new/choose) with system, Claude and ClaudeFont versions/build numbers, target type, reproduction steps and redacted logs. Remove usernames, private paths, conversation content and login data.
-
-</details>
-
-<details>
-<summary>Local data locations</summary>
-
-| Content | Default location |
-| --- | --- |
-| Settings and themes | `~/.config/claudefont/` |
-| Complete backups, logs and transactions | `~/.local/share/claudefont/` |
-| Test app and separate profile | `~/Library/Application Support/claudefont/` |
-
-The rename preserves the bundle ID, CLI command and data directories. A normal replacement retains settings, themes and backups. The tool does not upload conversations, login data or API keys.
-
-</details>
+See the [user guide](docs/USAGE.md#english) for access, restoration, themes and local data. Include system and app versions, reproduction steps and redacted logs when reporting an issue.
 
 ## Development and contribution
 
-[Build and CLI](docs/DEVELOPMENT.md) · [Architecture](docs/ARCHITECTURE.md) · [Verification scope](docs/VERIFICATION.md) · [Contributing](CONTRIBUTING.md)
+The client uses Swift / SwiftUI with a bundled Swift engine. Development requires Xcode 26 or later and a valid Apple signing identity.
 
-Use an Xcode / Swift toolchain supporting macOS 26 and a valid Apple signing identity. Keep build output outside the repository and iCloud.
+[Build and CLI](docs/DEVELOPMENT.md) · [Architecture](docs/ARCHITECTURE.md) · [Contributing](CONTRIBUTING.md)
 
-```sh
-git clone https://github.com/Orxooo/claudefont.git
-cd claudefont
-./gui/build.sh
-```
+## License
 
----
-
-Copyright © 2026 Orxooo · [GPL-3.0-only](LICENSE) · [Project notices](NOTICE)
-
-ClaudeFont is unaffiliated with Anthropic and distributes neither Claude application code nor font files.
+Licensed under [GPL-3.0-only](LICENSE). Independently developed by Orxooo and unaffiliated with Anthropic. The project distributes neither Claude application code nor font files; see [project notices](NOTICE).
