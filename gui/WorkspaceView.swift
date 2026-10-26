@@ -331,7 +331,13 @@ struct WorkspaceView: View {
             VStack(spacing: 6) {
                 ForEach(WorkspaceTab.allCases) { item in
                     Button { withAnimation(motion) { tab = item } } label: {
-                        Label(item.title(lang), systemImage: item.symbol)
+                        HStack(spacing: 10) {
+                            Image(systemName: item.symbol)
+                                .frame(width: 20, height: 20)
+                                .accessibilityHidden(true)
+                            Text(item.title(lang))
+                                .lineLimit(1)
+                        }
                             .font(.system(size: 14, weight: tab == item ? .semibold : .medium))
                             .foregroundStyle(tab == item ? accent : ink.opacity(0.75))
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -344,6 +350,7 @@ struct WorkspaceView: View {
                             }
                             .contentShape(RoundedRectangle(cornerRadius: 14))
                     }.buttonStyle(.plain).focusEffectDisabled()
+                        .accessibilityLabel(item.title(lang))
                         .accessibilityAddTraits(tab == item ? .isSelected : [])
                 }
                 Spacer()

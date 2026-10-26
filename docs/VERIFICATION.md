@@ -1,4 +1,26 @@
-# CC#Skin 1.2.0 verification
+# CC#Skin 1.2.1 verification
+
+Version **1.2.1, build 8**; focused checks recorded **2026-10-26**.
+
+| Check | Result | Scope |
+| --- | --- | --- |
+| GUI / bundled CLI build | PASS | Apple Silicon/macOS compilation |
+| Signing and local app ZIP | PASS | Deep strict signature; extracted, built and installed app file hashes match |
+| Installed native sidebar | PASS | All seven Chinese titles share a fixed icon column and common leading edge, including selected Mods |
+| Name/version/icon | PASS | CC#Skin 1.2.1 build 8; supplied icon retained |
+| Renamed-repository updater | PASS | Manual check against Orxooo/CCSkin returns the latest-stable message |
+| Documentation | PASS | New repository URLs and a screenshot of the installed build |
+
+Only sidebar layout, release URLs and package version changed in the app.
+Mods, appearance-engine and test sources are unchanged from the 1.2.0 regression
+baseline below; those full suites were not rerun for this layout/link patch.
+Third-party Mod rendering, new actual-Claude patching, minimum-width/English UI
+and other macOS/CPU combinations remain **NOT RUN**. Public asset digests are
+checked against a fresh download after upload. Development-signed; not notarized.
+
+---
+
+# Previous 1.2.0 regression record
 
 Release candidate: **1.2.0, build 7**. Checks recorded **2026-10-26** on Apple Silicon/macOS.
 

@@ -12,8 +12,8 @@
 ## 构建客户端
 
 ```sh
-git clone https://github.com/Orxooo/ClaudeFont.git
-cd ClaudeFont
+git clone https://github.com/Orxooo/CCSkin.git
+cd CCSkin
 ./gui/build.sh
 ```
 

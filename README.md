@@ -2,14 +2,14 @@
 <h1 align="center">CC#Skin</h1>
 <p align="center">Claude 桌面版的字体、外观与 Mods 管理工具。</p>
 <p align="center">
-<a href="https://github.com/Orxooo/ClaudeFont/releases/latest"><img src="https://img.shields.io/github/v/release/Orxooo/ClaudeFont" alt="最新版本"></a>
+<a href="https://github.com/Orxooo/CCSkin/releases/latest"><img src="https://img.shields.io/github/v/release/Orxooo/CCSkin" alt="最新版本"></a>
 <img src="https://img.shields.io/badge/macOS-26%2B-lightgrey" alt="macOS 26+">
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--only-blue" alt="GPL-3.0-only"></a>
 </p>
 
-**[下载 CC#Skin 1.2.0](https://github.com/Orxooo/ClaudeFont/releases/download/v1.2.0/CCSkin-1.2.0-macOS-arm64.zip)** · [English](README.en.md) · [更新记录](CHANGELOG.md) · [问题反馈](https://github.com/Orxooo/ClaudeFont/issues/new/choose)
+**[下载 CC#Skin 1.2.1](https://github.com/Orxooo/CCSkin/releases/download/v1.2.1/CCSkin-1.2.1-macOS-arm64.zip)** · [English](README.en.md) · [更新记录](CHANGELOG.md) · [问题反馈](https://github.com/Orxooo/CCSkin/issues/new/choose)
 
-当前发行版本 **1.2.0（构建 7）**。适用于 **macOS 26+ 的 Apple Silicon Mac**；Mods 管理另需 Claude Code 官方 CLI **2.1.287+**。
+当前发行版本 **1.2.1（构建 8）**。适用于 **macOS 26+ 的 Apple Silicon Mac**；Mods 管理另需 Claude Code 官方 CLI **2.1.287+**。
 
 ![CC#Skin 的 Mods 来源、筛选与排行](docs/assets/mods.png)
 
@@ -26,12 +26,12 @@
 
 ## 安装
 
-1. 下载上方安装包和发行页的 [`SHA256SUMS.txt`](https://github.com/Orxooo/ClaudeFont/releases/download/v1.2.0/SHA256SUMS.txt)。
+1. 下载上方安装包和发行页的 [`SHA256SUMS.txt`](https://github.com/Orxooo/CCSkin/releases/download/v1.2.1/SHA256SUMS.txt)。
 2. 核对摘要，解压 ZIP，将 `CC#Skin.app` 放入「应用程序」。
 3. 打开应用。使用字体和外观功能时，按「概览」完成 App 管理权限检测。
 
 ```sh
-shasum -a 256 CCSkin-1.2.0-macOS-arm64.zip
+shasum -a 256 CCSkin-1.2.1-macOS-arm64.zip
 ```
 
 客户端内置运行所需组件，无需 Python 或 Xcode。发行包使用 Apple 开发证书签名，未经 Apple 公证；首次打开说明见 [使用指南](docs/USAGE.md#安装与校验)。

@@ -2,14 +2,14 @@
 <h1 align="center">CC#Skin</h1>
 <p align="center">Fonts, appearance and Mods management for Claude desktop.</p>
 <p align="center">
-<a href="https://github.com/Orxooo/ClaudeFont/releases/latest"><img src="https://img.shields.io/github/v/release/Orxooo/ClaudeFont" alt="Latest release"></a>
+<a href="https://github.com/Orxooo/CCSkin/releases/latest"><img src="https://img.shields.io/github/v/release/Orxooo/CCSkin" alt="Latest release"></a>
 <img src="https://img.shields.io/badge/macOS-26%2B-lightgrey" alt="macOS 26+">
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--only-blue" alt="GPL-3.0-only"></a>
 </p>
 
-**[Download CC#Skin 1.2.0](https://github.com/Orxooo/ClaudeFont/releases/download/v1.2.0/CCSkin-1.2.0-macOS-arm64.zip)** · [简体中文](README.md) · [Changelog](CHANGELOG.md) · [Report an issue](https://github.com/Orxooo/ClaudeFont/issues/new/choose)
+**[Download CC#Skin 1.2.1](https://github.com/Orxooo/CCSkin/releases/download/v1.2.1/CCSkin-1.2.1-macOS-arm64.zip)** · [简体中文](README.md) · [Changelog](CHANGELOG.md) · [Report an issue](https://github.com/Orxooo/CCSkin/issues/new/choose)
 
-Current release: **1.2.0 (build 7)**. Requires **Apple Silicon and macOS 26+**. Mods management also needs the official Claude Code CLI **2.1.287+**.
+Current release: **1.2.1 (build 8)**. Requires **Apple Silicon and macOS 26+**. Mods management also needs the official Claude Code CLI **2.1.287+**.
 
 ![CC#Skin Mods sources, filters and rankings](docs/assets/mods.png)
 
@@ -26,12 +26,12 @@ Several entries may share a repository; Stars and push dates describe that whole
 
 ## Install
 
-1. Download the app ZIP and [`SHA256SUMS.txt`](https://github.com/Orxooo/ClaudeFont/releases/download/v1.2.0/SHA256SUMS.txt).
+1. Download the app ZIP and [`SHA256SUMS.txt`](https://github.com/Orxooo/CCSkin/releases/download/v1.2.1/SHA256SUMS.txt).
 2. Verify the checksum, extract the ZIP and move `CC#Skin.app` into Applications.
 3. Open the app. For fonts and appearance, complete the App Management access check in Overview.
 
 ```sh
-shasum -a 256 CCSkin-1.2.0-macOS-arm64.zip
+shasum -a 256 CCSkin-1.2.1-macOS-arm64.zip
 ```
 
 The packaged app needs neither Python nor Xcode. It is signed with an Apple development certificate and is not notarized; see the [user guide](docs/USAGE.md#installation-and-checksums) for first-launch instructions.

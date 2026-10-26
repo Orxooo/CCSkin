@@ -1,5 +1,11 @@
 # Changelog
 
+## CC#Skin 1.2.1 · build 8 — 2026-10-26
+
+- Align every sidebar title using a fixed-width icon column and shared spacing.
+- Rename the GitHub repository to CCSkin and update release, help and clone links.
+- Point the built-in updater at the renamed repository.
+
 ## CC#Skin 1.2.0 · build 7 — 2026-10-26
 
 - Official product name CC#Skin and new icon artwork.
