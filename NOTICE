@@ -1,10 +1,18 @@
-claudefont
+CC#Skin
 Copyright (C) 2026 Orxooo
 
 This project is licensed under the GNU General Public License, version 3
 only (SPDX-License-Identifier: GPL-3.0-only). No later-version option or
 additional licensing exception is granted. See LICENSE for the full terms.
 
-claudefont is an independent tool and is not affiliated with Anthropic.
+CC#Skin is an independent tool and is not affiliated with Anthropic.
 Claude is a product of Anthropic. No Claude application code is distributed
 with this project.
+
+Mods catalog metadata: omarcevi/claudemods (https://github.com/omarcevi/claudemods), CC0 1.0. Linked plugins retain their own licenses and are installed separately through Claude Code. No third-party plugin code is bundled.
+
+Additional marketplace metadata: whyashthakker/awesome-claude-code-mods,
+hamzafer/claude-code-mods and T-AI-Labs/claude-code-mods (MIT).
+Full copyright and permission notices accompany the catalog in
+mods-sources-NOTICE.txt. Repository metrics are factual GitHub API snapshots;
+they apply to hosting repositories, not individual Mod downloads.

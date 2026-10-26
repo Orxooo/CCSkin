@@ -28,10 +28,10 @@ final class ApplicationDelegate: NSObject, NSApplicationDelegate {
 }
 
 @main
-struct ClaudefontApplication: App {
+struct CCSkinApplication: App {
     @NSApplicationDelegateAdaptor(ApplicationDelegate.self) private var delegate
     var body: some Scene {
-        Window("claudefont", id: "workspace") { WorkspaceView() }
+        Window("CC#Skin", id: "workspace") { WorkspaceView() }
             .defaultSize(width: 1280, height: 760)
             .commands {
                 CommandGroup(replacing: .appInfo) {

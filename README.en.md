@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="gui/assets/claudefont-icon.png" alt="claudefont icon" width="88">
+  <img src="gui/assets/ccskin-icon.png" alt="CC#Skin icon" width="88">
 </p>
 
-<h1 align="center">claudefont</h1>
+<h1 align="center">CC#Skin</h1>
 
 <p align="center">Fonts, reading layout and colors for Claude desktop.</p>
 
@@ -14,11 +14,13 @@
 
 <p align="center"><a href="README.md">简体中文</a> · <b>English</b></p>
 
-**[Download claudefont](https://github.com/Orxooo/claudefont/releases/download/v1.0.0/claudefont-1.0.0-macOS-arm64.zip)** · [Changelog](CHANGELOG.md) · [Report an issue](https://github.com/Orxooo/claudefont/issues)
+**[Download legacy claudefont 1.0.0](https://github.com/Orxooo/claudefont/releases/download/v1.0.0/claudefont-1.0.0-macOS-arm64.zip)** · [Changelog](CHANGELOG.md) · [Report an issue](https://github.com/Orxooo/claudefont/issues)
 
-Current version: **V1.0.0 (build 4)**. Requires **Apple Silicon, macOS 26+** and Claude desktop.
+Current local version: **V1.2.0 (build 6)**, renamed from claudefont to CC#Skin. Requires **Apple Silicon, macOS 26+** and Claude desktop.
 
-<img src="docs/assets/fonts.png" alt="claudefont font settings" width="960">
+Local development version **1.2.0 (build 6)** adds the [Mods entry](docs/MODS.md) and has not been published. Existing release/download notes below still describe 1.0.0 build 4.
+
+<img src="docs/assets/fonts.png" alt="CC#Skin font settings" width="960">
 
 ## What you can adjust
 
@@ -37,10 +39,10 @@ Current version: **V1.0.0 (build 4)**. Requires **Apple Silicon, macOS 26+** and
 
 ## Quick start
 
-1. **Install**: Download the ZIP above, extract it and move `claudefont.app` into Applications.
+1. **Install**: Download the ZIP above, extract it and move `CC#Skin.app` into Applications.
 2. **Choose a target**: Select the main Claude or a test copy in Overview. Verify a test copy first.
 3. **Set the style**: Adjust Fonts, Code and Background, or load a theme.
-4. **Apply**: Quit Claude from its app menu, then choose Apply changes in claudefont. Closing its window is insufficient.
+4. **Apply**: Quit Claude from its app menu, then choose Apply changes in CC#Skin. Closing its window is insufficient.
 5. **Check**: Reopen the selected Claude and inspect the actual fonts and layout. Use Restore app in the actions menu to undo changes.
 
 Apply preserves a complete app backup. Failed writes or startup checks trigger rollback. Client previews use sample content; check the real Claude page for the result.
@@ -73,7 +75,7 @@ Include version/build numbers, reproduction steps and redacted logs in issue rep
 </details>
 
 <details>
-<summary>What about Claude updates or earlier claudefont builds?</summary>
+<summary>What about Claude updates or earlier CC#Skin builds?</summary>
 
 Claude updates can change resources. Check compatibility again and verify a test copy.
 
@@ -108,4 +110,4 @@ Built with Swift, SwiftUI and macOS system tools. The client and engine are impl
 
 Copyright © 2026 Orxooo. **GPL-3.0-only**. See [LICENSE](LICENSE) for the full terms and [NOTICE](NOTICE) for project notices.
 
-claudefont is unaffiliated with Anthropic and distributes no Claude application code.
+CC#Skin is unaffiliated with Anthropic and distributes no Claude application code.

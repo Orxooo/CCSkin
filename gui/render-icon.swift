@@ -7,7 +7,7 @@ import Foundation
 let arguments = CommandLine.arguments
 if arguments.count != 2 { fputs("usage: render-icon.swift OUTPUT.iconset\n", stderr); exit(2) }
 let destination = URL(fileURLWithPath: arguments[1], isDirectory: true)
-let artwork = URL(fileURLWithPath: #filePath).deletingLastPathComponent().appendingPathComponent("assets/claudefont-icon.png")
+let artwork = URL(fileURLWithPath: #filePath).deletingLastPathComponent().appendingPathComponent("assets/ccskin-icon.png")
 guard let source = NSImage(contentsOf: artwork) else { fputs("Cannot read icon artwork\n", stderr); exit(1) }
 try FileManager.default.createDirectory(at: destination, withIntermediateDirectories: true)
 for (base, scale) in [(16,1),(16,2),(32,1),(32,2),(128,1),(128,2),(256,1),(256,2),(512,1),(512,2)] {

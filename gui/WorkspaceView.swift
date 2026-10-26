@@ -5,7 +5,7 @@ import AppKit
 
 // The workspace owns presentation only. Model remains the sole owner of CLI work.
 private enum WorkspaceTab: String, CaseIterable, Identifiable {
-    case overview, fonts, code, background, themes, logs
+    case overview, fonts, code, background, themes, mods, logs
     var id: String { rawValue }
     var symbol: String {
         switch self {
@@ -14,6 +14,7 @@ private enum WorkspaceTab: String, CaseIterable, Identifiable {
         case .code: "curlybraces"
         case .background: "circle.lefthalf.filled"
         case .themes: "square.stack.3d.up"
+        case .mods: "puzzlepiece.extension"
         case .logs: "list.bullet.rectangle"
         }
     }
@@ -24,12 +25,14 @@ private enum WorkspaceTab: String, CaseIterable, Identifiable {
         case (.code, .zh): "代码"
         case (.background, .zh): "背景"
         case (.themes, .zh): "主题"
+        case (.mods, .zh): "Mods"
         case (.logs, .zh): "日志"
         case (.overview, _): "Overview"
         case (.fonts, _): "Fonts"
         case (.code, _): "Code"
         case (.background, _): "Background"
         case (.themes, _): "Themes"
+        case (.mods, _): "Mods"
         case (.logs, _): "Logs"
         }
     }
@@ -289,6 +292,7 @@ private final class WorkspaceBackgroundPicker: NSObject, ObservableObject {
 
 struct WorkspaceView: View {
     @StateObject private var model = Model()
+    @StateObject private var mods = ModsStore()
     @StateObject private var updates = UpdateWatcher()
     @StateObject private var backgroundPicker = WorkspaceBackgroundPicker()
     @ObservedObject private var copy = Copy.shared
@@ -305,6 +309,8 @@ struct WorkspaceView: View {
     @State private var themeDraft: WorkspaceThemeDraft?
     @State private var deleteTheme: ThemeDocument?
     @State private var previewDark = false
+    @State private var includeStyleChanges = false
+    @State private var applyingSelection = false
     @State private var permissionGranted: Bool?
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.openWindow) private var openWindow
@@ -350,7 +356,7 @@ struct WorkspaceView: View {
                     Image(nsImage: NSApplication.shared.applicationIconImage)
                         .resizable().frame(width: 27, height: 27)
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("claudefont").font(.system(size: 12, weight: .semibold))
+                        Text("CC#Skin").font(.system(size: 12, weight: .semibold))
                         Text("V\(Updater.version)")
                             .font(.system(size: 10)).foregroundStyle(.secondary)
                     }
@@ -376,6 +382,7 @@ struct WorkspaceView: View {
                     case .code: code
                     case .background: background
                     case .themes: themes
+                    case .mods: ModsView(store:mods, zh:lang == .zh, locked:model.busy || applyingSelection)
                     case .logs: logs
                     }
                 }
@@ -433,6 +440,7 @@ struct WorkspaceView: View {
                 .accessibilityElement(children: .contain)
             }.sharedBackgroundVisibility(.hidden)
         }
+        .disabled(applyingSelection || mods.busy)
         .onAppear {
             model.loadFonts()
             model.loadConfig()
@@ -449,9 +457,9 @@ struct WorkspaceView: View {
         }
         .alert(l("应用到正式 Claude？", "Apply to the main Claude?"), isPresented: $showApplyConfirm) {
             Button(t("sheet.cancel"), role: .cancel) {}
-            Button(t("sheet.apply.go")) { runApply() }
+            Button(t("sheet.apply.go")) { runSelectedChanges() }
         } message: {
-            Text(l("将先备份，再修改并重新签名。失败时自动恢复。", "Claude is backed up before changes and restored automatically if the process fails."))
+            Text(l("将先执行所选 Mods 更改，再备份 Claude、修改样式并重新签名。Mods 已完成的更改独立保留。", "Selected Mods changes run first, followed by the Claude backup, style patch and signing. Completed Mods changes are kept independently."))
         }
         .alert(l("请先退出 Claude", "Quit Claude first"), isPresented: $showNeedsQuit) {
             Button(l("知道了", "OK"), role: .cancel) {}
@@ -499,7 +507,7 @@ struct WorkspaceView: View {
                     .font(.system(size: 14)).foregroundStyle(.secondary)
             }
             Spacer()
-            if tab != .overview {
+            if tab != .overview && tab != .mods {
                 WorkspaceDropdown(title: l("目标", "Target"), selection: Binding(
                     get: { model.target },
                     set: { model.target = $0; model.refresh($0) }
@@ -516,6 +524,7 @@ struct WorkspaceView: View {
         case .code: l("代码使用自己的字形与比例。", "Give code its own type and scale.")
         case .background: l("浅色与深色，保持整套配色协调。", "Coordinate light and dark appearances.")
         case .themes: l("保存喜欢的组合，在不同工作场景间切换。", "Save your favorite styles and switch between workflows.")
+        case .mods: l("发现现成扩展，通过官方插件系统安装和管理。", "Discover community extensions and manage them through the official plugin system.")
         case .logs: l("查看当前状态与本次运行记录。", "Review status and the current session.")
         }
     }
@@ -533,6 +542,13 @@ struct WorkspaceView: View {
     }
 
     private var applyBar: some View {
+        Group {
+            if tab == .mods { modsApplyBar }
+            else { styleApplyBar }
+        }
+    }
+
+    private var styleApplyBar: some View {
         HStack(spacing: 16) {
             Image(systemName: model.hasUnapplied ? "circle.dotted" :
                     model.current.patched ? "checkmark" : "square.dashed")
@@ -557,7 +573,7 @@ struct WorkspaceView: View {
             .buttonStyle(WorkspaceActionStyle(prominent: true))
             .help(t(model.current.patched ? "action.reapply" : "action.apply",
                     ["{target}": model.target.label]))
-            .disabled(model.busy || !model.exists(model.target) || !model.appearanceValid || (!model.current.canApply && !model.hasUnsavedChanges))
+            .disabled(model.busy || mods.busy || applyingSelection || !styleEligible)
         }
         .padding(.horizontal, 18)
         .padding(.vertical, 14)
@@ -569,6 +585,29 @@ struct WorkspaceView: View {
         }
         .shadow(color: .black.opacity(colorScheme == .dark ? 0.24 : 0.10), radius: 20, y: 8)
         .animation(motion, value: model.hasUnapplied)
+    }
+
+    private var modsApplyBar: some View {
+        HStack(spacing:14) {
+            VStack(alignment:.leading, spacing:5) {
+                Text(l("\(mods.queue.count) 项 Mods 更改", "\(mods.queue.count) Mods changes"))
+                    .font(.system(size:14, weight:.semibold))
+                Toggle(l("同时应用样式到 \(model.target.label)", "Also apply styles to \(model.target.label)"), isOn:$includeStyleChanges)
+                    .toggleStyle(.checkbox).font(.system(size:11)).disabled(model.busy || mods.busy || applyingSelection)
+            }
+            Spacer()
+            if applyingSelection || mods.busy { ProgressView().controlSize(.small) }
+            Button { beginApply() } label: {
+                Label(l("应用所选更改", "Apply selected changes"), systemImage:"arrow.down.to.line.compact")
+            }.buttonStyle(WorkspaceActionStyle(prominent:true))
+                .disabled(model.busy || mods.busy || applyingSelection ||
+                    (mods.queue.isEmpty && !includeStyleChanges) ||
+                    (!mods.queue.isEmpty && !mods.canMutate) ||
+                    (includeStyleChanges && !styleEligible))
+        }
+        .padding(18).background(surface, in:RoundedRectangle(cornerRadius:20))
+        .overlay(RoundedRectangle(cornerRadius:20).strokeBorder(ink.opacity(0.08)))
+        .shadow(color:.black.opacity(colorScheme == .dark ? 0.24 : 0.10), radius:20, y:8)
     }
 
     // MARK: Overview
@@ -1619,9 +1658,40 @@ struct WorkspaceView: View {
     }
 
     private func beginApply() {
-        guard !model.targetRunning else { showNeedsQuit = true; return }
-        if model.target == .production { showApplyConfirm = true }
-        else { runApply() }
+        if (tab != .mods || includeStyleChanges) && model.targetRunning { showNeedsQuit = true; return }
+        if (tab != .mods || includeStyleChanges) && model.target == .production { showApplyConfirm = true }
+        else { runSelectedChanges() }
+    }
+
+    private var styleEligible: Bool {
+        model.exists(model.target) && model.appearanceValid && (model.current.canApply || model.hasUnsavedChanges)
+    }
+
+    private func runSelectedChanges() {
+        guard !applyingSelection && !model.busy && !mods.busy else { return }
+        let applyStyles = tab != .mods || includeStyleChanges
+        let selectedTarget = model.target
+        let selectedStyle = model.settingsSnapshot
+        // Other pages apply styles only; the Mods queue remains explicitly selected on its own page.
+        let applyMods = tab == .mods && !mods.queue.isEmpty
+        applyingSelection = true
+        Task {
+            if applyMods {
+                let ok = await mods.apply()
+                if !ok { applyingSelection = false; return }
+                if applyStyles {
+                    model.log = String((model.log + "\nMods\n" + mods.log + "\n/reload-plugins\n").suffix(250_000))
+                }
+            }
+            if applyStyles {
+                guard model.target == selectedTarget && model.settingsSnapshot == selectedStyle && styleEligible else {
+                    mods.error = l("样式、目标或可应用状态在执行期间改变，请确认后重新应用。", "The style, target or apply eligibility changed during the operation. Review it and apply again.")
+                    applyingSelection = false; tab = .mods; return
+                }
+                runApply()
+            }
+            applyingSelection = false
+        }
     }
 
     private func chooseClassicPreset() {
@@ -1754,7 +1824,7 @@ struct WorkspaceAboutView: View {
                 Image(nsImage: NSApplication.shared.applicationIconImage)
                     .resizable().frame(width: 76, height: 76)
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("claudefont").font(.system(size: 26, weight: .semibold))
+                    Text("CC#Skin").font(.system(size: 26, weight: .semibold))
                     Text(t("about.version", [
                         "{v}": Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "—",
                         "{b}": Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "—"

@@ -1,0 +1,142 @@
+{
+  "arunjay4213/claude-mods" : {
+    "fetchedAt" : 814689355.2303419,
+    "pushedAt" : 813826545,
+    "stars" : 11
+  },
+  "aycandv/claude-usage-meter" : {
+    "fetchedAt" : 814689356.194361,
+    "pushedAt" : 812636706,
+    "stars" : 1
+  },
+  "charlie0113-t/claude-agent-flow" : {
+    "fetchedAt" : 814689355.1930461,
+    "pushedAt" : 813199226,
+    "stars" : 26
+  },
+  "furqan-khan07/pixelband" : {
+    "fetchedAt" : 814689356.1023009,
+    "pushedAt" : 814510718,
+    "stars" : 17
+  },
+  "galelmalah/claude-mods" : {
+    "fetchedAt" : 814689356.2328489,
+    "pushedAt" : 813329653,
+    "stars" : 5
+  },
+  "halluton/mindful-claude" : {
+    "fetchedAt" : 814689356.1918561,
+    "pushedAt" : 811119693,
+    "stars" : 108
+  },
+  "hamzafer/claude-code-mods" : {
+    "fetchedAt" : 814689357.104873,
+    "pushedAt" : 814489350,
+    "stars" : 389
+  },
+  "ishuagrawal/clawdhouse" : {
+    "fetchedAt" : 814689357.172771,
+    "pushedAt" : 812669989,
+    "stars" : 6
+  },
+  "jaydoubleu/aside" : {
+    "fetchedAt" : 814689355.189609,
+    "pushedAt" : 811109734,
+    "stars" : 7
+  },
+  "juulsverne/claude-code-mods" : {
+    "fetchedAt" : 814689357.1322019,
+    "pushedAt" : 812745664,
+    "stars" : 1
+  },
+  "karanb192/claude-code-mods" : {
+    "fetchedAt" : 814689357.168575,
+    "pushedAt" : 814096735,
+    "stars" : 43
+  },
+  "lossless-claude/lcm" : {
+    "fetchedAt" : 814689357.2589331,
+    "pushedAt" : 814588824,
+    "stars" : 60
+  },
+  "lperezmo/topic-filter-mod" : {
+    "fetchedAt" : 814689358.080719,
+    "pushedAt" : 814324738,
+    "stars" : 1
+  },
+  "lucenity0/claude-familiar" : {
+    "fetchedAt" : 814689358.1173661,
+    "pushedAt" : 814444861,
+    "stars" : 3
+  },
+  "meganemura/buffer-pane" : {
+    "fetchedAt" : 814689358.1400971,
+    "pushedAt" : 814368853,
+    "stars" : 0
+  },
+  "meganemura/pull-request-pane" : {
+    "fetchedAt" : 814689358.1387782,
+    "pushedAt" : 814368857,
+    "stars" : 2
+  },
+  "nahumlitvin/prismantis" : {
+    "fetchedAt" : 814689355.2009971,
+    "pushedAt" : 814558357,
+    "stars" : 192
+  },
+  "nogu66/md-prompt" : {
+    "fetchedAt" : 814689358.1975319,
+    "pushedAt" : 813817447,
+    "stars" : 9
+  },
+  "oikon48/prompt-rail" : {
+    "fetchedAt" : 814689359.0555589,
+    "pushedAt" : 814528115,
+    "stars" : 46
+  },
+  "onewave-ai/claude-code-mods" : {
+    "fetchedAt" : 814689355.203017,
+    "pushedAt" : 812709311,
+    "stars" : 23
+  },
+  "r3al1tym/claude-review" : {
+    "fetchedAt" : 814689359.06109,
+    "pushedAt" : 813614194,
+    "stars" : 5
+  },
+  "sezaakgun/cc-arcade" : {
+    "fetchedAt" : 814689359.1056042,
+    "pushedAt" : 811124391,
+    "stars" : 44
+  },
+  "smukh/roll-credits" : {
+    "fetchedAt" : 814689360.0400419,
+    "pushedAt" : 811257669,
+    "stars" : 2
+  },
+  "t-ai-labs/claude-code-mods" : {
+    "fetchedAt" : 814689356.238956,
+    "pushedAt" : 814599538,
+    "stars" : 2
+  },
+  "tomstagl/cctop" : {
+    "fetchedAt" : 814689360.0399051,
+    "pushedAt" : 812570838,
+    "stars" : 16
+  },
+  "udaaff/claude-code-session-monitor" : {
+    "fetchedAt" : 814689360.0603089,
+    "pushedAt" : 812650939,
+    "stars" : 1
+  },
+  "whyashthakker/awesome-claude-code-mods" : {
+    "fetchedAt" : 814689360.931395,
+    "pushedAt" : 812714946,
+    "stars" : 99
+  },
+  "yash-gadodia/claude-mods" : {
+    "fetchedAt" : 814689360.0700381,
+    "pushedAt" : 811735371,
+    "stars" : 3
+  }
+}

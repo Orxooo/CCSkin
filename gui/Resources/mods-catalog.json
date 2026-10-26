@@ -1,0 +1,2007 @@
+[
+  {
+    "author" : "Charlie0113-T",
+    "description" : "/flow opens a live, read-only tree of the session's subagents and teammates beside the transcript: status, current tool call, waits for approval, elapsed time, tokens; prints the same tree as text where no pane can be drawn",
+    "name" : "agent-flow",
+    "pluginID" : "agent-flow@claudemods",
+    "tags" : [
+      "subagents",
+      "pane",
+      "observability"
+    ],
+    "url" : "https://github.com/Charlie0113-T/claude-agent-flow"
+  },
+  {
+    "author" : "OneWave-AI",
+    "description" : "Watch the agent work: every step in plain English, with a live time-saved counter",
+    "name" : "agent-narrator",
+    "pluginID" : "agent-narrator@claudemods",
+    "tags" : [
+      "collection",
+      "cost",
+      "fun"
+    ],
+    "url" : "https://github.com/OneWave-AI/claude-code-mods"
+  },
+  {
+    "author" : "OneWave-AI",
+    "description" : "Race Claude Code sessions on a task: live split-screen race track scoreboard",
+    "name" : "agent-race",
+    "pluginID" : "agent-race@claudemods",
+    "tags" : [
+      "collection",
+      "cost",
+      "fun"
+    ],
+    "url" : "https://github.com/OneWave-AI/claude-code-mods"
+  },
+  {
+    "author" : "JayDoubleu",
+    "description" : "Read-only side chat: /aside opens a pane where you ask about the session so far, answered by a tool-less fork of the transcript; nothing is written back into the main thread.",
+    "name" : "aside",
+    "pluginID" : "aside@claudemods",
+    "tags" : [
+      "side-chat",
+      "pane",
+      "context"
+    ],
+    "url" : "https://github.com/JayDoubleu/aside"
+  },
+  {
+    "author" : "OneWave-AI",
+    "description" : "Failing tests spawn a pixel boss; every run that fixes tests lands a hit, zero failures is a KO with loot",
+    "name" : "boss-fight",
+    "pluginID" : "boss-fight@claudemods",
+    "tags" : [
+      "collection",
+      "cost",
+      "fun"
+    ],
+    "url" : "https://github.com/OneWave-AI/claude-code-mods"
+  },
+  {
+    "author" : "Arunjay4213",
+    "description" : "Stops a session before it runs past a budget: warns near a cost or plan-window limit, then refuses tool calls and asks before the next prompt.",
+    "name" : "budget-guard",
+    "pluginID" : "budget-guard@claudemods",
+    "tags" : [
+      "context",
+      "quota",
+      "cost"
+    ],
+    "url" : "https://github.com/Arunjay4213/claude-mods"
+  },
+  {
+    "author" : "meganemura",
+    "description" : "A pane beside the transcript that holds the next things to tell the agent: write blocks of text while a turn runs, then press [+] to put one block into the prompt box.",
+    "name" : "buffer-pane",
+    "pluginID" : "buffer-pane@claudemods",
+    "tags" : [
+      "drafts",
+      "pane",
+      "productivity"
+    ],
+    "url" : "https://github.com/meganemura/buffer-pane"
+  },
+  {
+    "author" : "OneWave-AI",
+    "description" : "Live session cost odometer above the prompt: a burning fuse, real-world comparisons, threshold alerts",
+    "name" : "burn-meter",
+    "pluginID" : "burn-meter@claudemods",
+    "tags" : [
+      "collection",
+      "cost",
+      "fun"
+    ],
+    "url" : "https://github.com/OneWave-AI/claude-code-mods"
+  },
+  {
+    "author" : "sezaakgun",
+    "description" : "Games above the Claude Code prompt (snake, Tetris, Doom, 2048, Minesweeper, Flappy, Pong, typing test, Space Invaders) that pause when Claude finishes a turn, and a pet that grows as Claude tests, commits and edits. Clones of the genre, not affiliated with or endorsed by Tetris Holding, Taito, Atari or id Software",
+    "name" : "cc-arcade",
+    "pluginID" : "cc-arcade@claudemods",
+    "tags" : [
+      "games",
+      "fun",
+      "band"
+    ],
+    "url" : "https://github.com/sezaakgun/cc-arcade"
+  },
+  {
+    "author" : "tomstagl",
+    "description" : "btop-style live dashboard for Claude Code internals: /cctop opens it in a side pane, cctop-insights lets the session answer questions from its numbers",
+    "name" : "cctop",
+    "pluginID" : "cctop@claudemods",
+    "tags" : [
+      "dashboard",
+      "tokens",
+      "pane"
+    ],
+    "url" : "https://github.com/tomstagl/cctop"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "Switches the Chrome profile Claude drives with no approval click.",
+    "name" : "chrome-switch",
+    "pluginID" : "chrome-switch@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "ishuagrawal",
+    "description" : "A pixel Clawd in a side pane that reacts to what Claude is doing",
+    "name" : "clawdhouse",
+    "pluginID" : "clawdhouse@claudemods",
+    "tags" : [
+      "pixel-art",
+      "companion",
+      "fun"
+    ],
+    "url" : "https://github.com/ishuagrawal/clawdhouse"
+  },
+  {
+    "author" : "OneWave-AI",
+    "description" : "A pixel pet that lives in a pane and reacts to what Claude does: eats on tool calls, gets sick on failures, panics on rm -rf, sleeps when idle, evolves as you ship",
+    "name" : "code-pet",
+    "pluginID" : "code-pet@claudemods",
+    "tags" : [
+      "collection",
+      "cost",
+      "fun"
+    ],
+    "url" : "https://github.com/OneWave-AI/claude-code-mods"
+  },
+  {
+    "author" : "Arunjay4213",
+    "description" : "Live /context: what fills the window, per-turn growth, and distance to auto-compaction.",
+    "name" : "context-lens",
+    "pluginID" : "context-lens@claudemods",
+    "tags" : [
+      "context",
+      "quota",
+      "cost"
+    ],
+    "url" : "https://github.com/Arunjay4213/claude-mods"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "Click-to-copy buttons above the prompt for the last answer's blocks, plus a durable stash.",
+    "name" : "copy-band",
+    "pluginID" : "copy-band@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "juulsverne",
+    "description" : "A band above the prompt: session and last-message cost, plus git branch, status, CI, pull and push",
+    "name" : "cost-git",
+    "pluginID" : "cost-git@claudemods",
+    "tags" : [
+      "cost",
+      "git",
+      "band"
+    ],
+    "url" : "https://github.com/juulsverne/claude-code-mods"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "Verifies the live URL after a deploy command succeeds.",
+    "name" : "deploy-verify",
+    "pluginID" : "deploy-verify@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "A docked pane with each edited file's hunk and keep or revert buttons that act without a model turn.",
+    "name" : "diff-review",
+    "pluginID" : "diff-review@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "Blinks the iTerm2 tab orange when a turn lands, until you type again or three minutes pass.",
+    "name" : "done-blink",
+    "pluginID" : "done-blink@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "karanb192",
+    "description" : "Pins every subagent to the fable model by rewriting agent.spawn, with /fable-pin on, off and status. Reach L0: its own store and one command, nothing else.",
+    "name" : "fable-pin",
+    "pluginID" : "fable-pin@claudemods",
+    "tags" : [
+      "mod-builder",
+      "cache",
+      "cost"
+    ],
+    "url" : "https://github.com/karanb192/claude-code-mods"
+  },
+  {
+    "author" : "lucenity0",
+    "description" : "A pixel-art companion above the prompt that reacts to your session, levels up, and can be redrawn by hand",
+    "name" : "familiar",
+    "pluginID" : "familiar@claudemods",
+    "tags" : [
+      "pixel-art",
+      "band",
+      "pet"
+    ],
+    "url" : "https://github.com/lucenity0/claude-familiar"
+  },
+  {
+    "author" : "karanb192",
+    "description" : "Preview pasted images at their prompt markers on macOS. Ghostty, plus experimental iTerm2 and Herdr support with a startup override. Reach L2: local clipboard capture and temporary files, no model or network calls.",
+    "name" : "image-peek",
+    "pluginID" : "image-peek@claudemods",
+    "tags" : [
+      "mod-builder",
+      "cache",
+      "cost"
+    ],
+    "url" : "https://github.com/karanb192/claude-code-mods"
+  },
+  {
+    "author" : "OneWave-AI",
+    "description" : "Gmail + Slack alerts inside Claude Code: toasts, status count, and an Alerts pane",
+    "name" : "inbox-alerts",
+    "pluginID" : "inbox-alerts@claudemods",
+    "tags" : [
+      "collection",
+      "cost",
+      "fun"
+    ],
+    "url" : "https://github.com/OneWave-AI/claude-code-mods"
+  },
+  {
+    "author" : "OneWave-AI",
+    "description" : "A pane of Claude's dry inner thoughts about your session, typed out live",
+    "name" : "inner-monologue",
+    "pluginID" : "inner-monologue@claudemods",
+    "tags" : [
+      "collection",
+      "cost",
+      "fun"
+    ],
+    "url" : "https://github.com/OneWave-AI/claude-code-mods"
+  },
+  {
+    "author" : "OneWave-AI",
+    "description" : "Dangerous Bash commands need launch codes: red alert pane, siren, a code to arm and a LAUNCH to fire",
+    "name" : "launch-codes",
+    "pluginID" : "launch-codes@claudemods",
+    "tags" : [
+      "collection",
+      "cost",
+      "fun"
+    ],
+    "url" : "https://github.com/OneWave-AI/claude-code-mods"
+  },
+  {
+    "author" : "lossless-claude",
+    "description" : "Lossless context management — DAG-based summarization that preserves every message",
+    "name" : "lcm",
+    "pluginID" : "lcm@claudemods",
+    "tags" : [
+      "context",
+      "memory",
+      "compaction"
+    ],
+    "url" : "https://github.com/lossless-claude/lcm"
+  },
+  {
+    "author" : "nogu66",
+    "description" : "Paints Markdown onto the prompt box as you type: syntax-highlighted code blocks, inline code, bold, italic, lists, tables, quotes, links and headings. Paint only, your text is never changed.",
+    "name" : "md-prompt",
+    "pluginID" : "md-prompt@claudemods",
+    "tags" : [
+      "markdown",
+      "prompt",
+      "editor"
+    ],
+    "url" : "https://github.com/nogu66/md-prompt"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "Denies a merge unless the latest human message says merge; ship, push and deploy do not count.",
+    "name" : "merge-gate",
+    "pluginID" : "merge-gate@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "galElmalah",
+    "description" : "Mermaid diagrams drawn as box art inline in the transcript.",
+    "name" : "mermaid-art",
+    "pluginID" : "mermaid-art@claudemods",
+    "tags" : [
+      "mermaid",
+      "diagrams",
+      "queue"
+    ],
+    "url" : "https://github.com/galElmalah/claude-mods"
+  },
+  {
+    "author" : "halluton",
+    "description" : "Guided breathing exercises above the Claude Code prompt while Claude works; the spinner reads the breath",
+    "name" : "mindful-breathing",
+    "pluginID" : "mindful-breathing@claudemods",
+    "tags" : [
+      "wellness",
+      "band",
+      "animation"
+    ],
+    "url" : "https://github.com/halluton/Mindful-Claude"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "Routes heavy Bash commands to a second machine over ssh, syncing the commit first.",
+    "name" : "mini-offload",
+    "pluginID" : "mini-offload@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "karanb192",
+    "description" : "A skill that plans, writes, validates, proves, reviews, migrates and publishes Claude Code mods. Plan first with the smallest $ surface, a footprint diffed against the plan, a test seen failing, an isolated load that leaves evidence files, a five-line threat model, and a handoff that names what was and was not proven. Brainstorm mode checks ideas against every mod already on GitHub.",
+    "name" : "mod-builder",
+    "pluginID" : "mod-builder@claudemods",
+    "tags" : [
+      "mod-builder",
+      "cache",
+      "cost"
+    ],
+    "url" : "https://github.com/karanb192/claude-code-mods"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "A money line above the prompt, read from SQLite databases over ssh.",
+    "name" : "money-band",
+    "pluginID" : "money-band@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "furqan-khan07",
+    "description" : "Animated pixel-art scenes or your own image above the prompt, reacting to Claude. Zero tokens.",
+    "name" : "pixelband",
+    "pluginID" : "pixelband@claudemods",
+    "tags" : [
+      "pixel-art",
+      "band",
+      "fun"
+    ],
+    "url" : "https://github.com/furqan-khan07/pixelband"
+  },
+  {
+    "author" : "NahumLitvin",
+    "description" : "Colorful, themeable rendering for Claude Code replies: tables, headings, code, numbers, paths and links.",
+    "name" : "prismantis",
+    "pluginID" : "prismantis@claudemods",
+    "tags" : [
+      "themes",
+      "rendering",
+      "appearance"
+    ],
+    "url" : "https://github.com/NahumLitvin/prismantis"
+  },
+  {
+    "author" : "galElmalah",
+    "description" : "/q <text> while Claude is working waits in a stack above the prompt and goes out when the turn ends.",
+    "name" : "prompt-queue",
+    "pluginID" : "prompt-queue@claudemods",
+    "tags" : [
+      "mermaid",
+      "diagrams",
+      "queue"
+    ],
+    "url" : "https://github.com/galElmalah/claude-mods"
+  },
+  {
+    "author" : "oikon48",
+    "description" : "A rail of your session's prompts beside the transcript or above the prompt; hover to read one, click to jump to it.",
+    "name" : "prompt-rail",
+    "pluginID" : "prompt-rail@claudemods",
+    "tags" : [
+      "navigation",
+      "pane",
+      "transcript"
+    ],
+    "url" : "https://github.com/oikon48/prompt-rail"
+  },
+  {
+    "author" : "meganemura",
+    "description" : "A pane beside the transcript with the GitHub pull requests and issues related to the current session: drag a title or description to leave a comment on it, add as many as you like, then Submit sends them all as one prompt. Watch each pull request's checks, review decision and mergeability update on a timer.",
+    "name" : "pull-request-pane",
+    "pluginID" : "pull-request-pane@claudemods",
+    "tags" : [
+      "github",
+      "pane",
+      "ci"
+    ],
+    "url" : "https://github.com/meganemura/pull-request-pane"
+  },
+  {
+    "author" : "Arunjay4213",
+    "description" : "5-hour and weekly plan limits with reset countdown and projected time until you hit them.",
+    "name" : "quota-meter",
+    "pluginID" : "quota-meter@claudemods",
+    "tags" : [
+      "context",
+      "quota",
+      "cost"
+    ],
+    "url" : "https://github.com/Arunjay4213/claude-mods"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "A receipt in the turn footer: edits, runs and curls, a warning when edits ran nothing, unfolded destructive commands, and a spinner that names an unverified claim.",
+    "name" : "receipt",
+    "pluginID" : "receipt@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "r3al1tym",
+    "description" : "claude review: the session's latest reply in a calm reading pane docked beside the conversation",
+    "name" : "review-pane",
+    "pluginID" : "review-pane@claudemods",
+    "tags" : [
+      "reading",
+      "pane",
+      "markdown"
+    ],
+    "url" : "https://github.com/r3al1tym/claude-review"
+  },
+  {
+    "author" : "rudrasecure",
+    "description" : "Side pane showing the files changed in this conversation as diffs; mark lines, comment, and send the comments back to Claude",
+    "name" : "review-pane-rudrasecure",
+    "pluginID" : "review-pane-rudrasecure@claudemods",
+    "tags" : [
+      "diff",
+      "code-review",
+      "pane"
+    ],
+    "url" : "https://github.com/rudrasecure/claude-mods"
+  },
+  {
+    "author" : "smukh",
+    "description" : "Movie-style credits for your Claude Code session",
+    "name" : "roll-credits",
+    "pluginID" : "roll-credits@claudemods",
+    "tags" : [
+      "fun",
+      "session-summary",
+      "animation"
+    ],
+    "url" : "https://github.com/smukh/roll-credits"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "Stops a turn that has edited too many files until the goal is restated.",
+    "name" : "scope-guard",
+    "pluginID" : "scope-guard@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "ray-amjad",
+    "description" : "Keeps secrets, email addresses and IP addresses out of the session transcript, and puts the real value back on the way into a tool call",
+    "name" : "secret-redactor",
+    "pluginID" : "secret-redactor@claudemods",
+    "tags" : [
+      "security",
+      "redaction",
+      "vercel"
+    ],
+    "url" : "https://github.com/ray-amjad/awesome-claude-code-function-hooks"
+  },
+  {
+    "author" : "udaaff",
+    "description" : "A side panel with live cards for every open Claude Code session. Requires CLAUDE_CODE_ENABLE_FUNCTION_HOOKS=1.",
+    "name" : "session-monitor",
+    "pluginID" : "session-monitor@claudemods",
+    "tags" : [
+      "sessions",
+      "pane",
+      "dashboard"
+    ],
+    "url" : "https://github.com/udaaff/claude-code-session-monitor"
+  },
+  {
+    "author" : "OneWave-AI",
+    "description" : "Spotify Wrapped for a Claude Code session: an animated stat reveal and a shareable PNG card",
+    "name" : "session-wrapped",
+    "pluginID" : "session-wrapped@claudemods",
+    "tags" : [
+      "collection",
+      "cost",
+      "fun"
+    ],
+    "url" : "https://github.com/OneWave-AI/claude-code-mods"
+  },
+  {
+    "author" : "OneWave-AI",
+    "description" : "Live TV play-by-play of your Claude Code session, spoken aloud with crowd effects",
+    "name" : "sportscaster",
+    "pluginID" : "sportscaster@claudemods",
+    "tags" : [
+      "collection",
+      "cost",
+      "fun"
+    ],
+    "url" : "https://github.com/OneWave-AI/claude-code-mods"
+  },
+  {
+    "author" : "OneWave-AI",
+    "description" : "Mission control for subagents and agent teams: who is running, what each is doing, who spawned whom, who is talking to whom",
+    "name" : "swarm",
+    "pluginID" : "swarm@claudemods",
+    "tags" : [
+      "collection",
+      "cost",
+      "fun"
+    ],
+    "url" : "https://github.com/OneWave-AI/claude-code-mods"
+  },
+  {
+    "author" : "Arunjay4213",
+    "description" : "Per-turn cost, tokens and cache hit ratio, with the session total.",
+    "name" : "token-ledger",
+    "pluginID" : "token-ledger@claudemods",
+    "tags" : [
+      "context",
+      "quota",
+      "cost"
+    ],
+    "url" : "https://github.com/Arunjay4213/claude-mods"
+  },
+  {
+    "author" : "lperezmo",
+    "description" : "Keep unrelated topics from pulling Claude off your code: listed terms become stable placeholder names (or their lines are dropped) before the model reads them.",
+    "name" : "topic-filter",
+    "pluginID" : "topic-filter@claudemods",
+    "tags" : [
+      "privacy",
+      "filter",
+      "guard"
+    ],
+    "url" : "https://github.com/lperezmo/topic-filter-mod"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "Limit windows, context fill and cost above the prompt, with a nudge to clear.",
+    "name" : "usage-band",
+    "pluginID" : "usage-band@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "aycandv",
+    "description" : "A usage board for Claude Code: a weekly pace gauge and a sliding ticker of your spend per model, in the terminal and on the desktop.",
+    "name" : "usage-ticker",
+    "pluginID" : "usage-ticker@claudemods",
+    "tags" : [
+      "usage",
+      "cost",
+      "band"
+    ],
+    "url" : "https://github.com/aycandv/claude-usage-meter"
+  },
+  {
+    "author" : "ray-amjad",
+    "description" : "Pins the Vercel deploy queue of the linked project under the prompt: every deploy queued, building or just finished, with its phase and elapsed time",
+    "name" : "vercel-deploy-status",
+    "pluginID" : "vercel-deploy-status@claudemods",
+    "tags" : [
+      "security",
+      "redaction",
+      "vercel"
+    ],
+    "url" : "https://github.com/ray-amjad/awesome-claude-code-function-hooks"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "A pixel Ragtag athlete above the prompt: every turn is a rep, the session is an AMRAP.",
+    "name" : "wod-band",
+    "pluginID" : "wod-band@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "yash-gadodia",
+    "description" : "3, 2, 1, GO on submit, a running clock per turn, and the split when it lands.",
+    "name" : "wod-timer",
+    "pluginID" : "wod-timer@claudemods",
+    "tags" : [
+      "guard",
+      "usage",
+      "collection"
+    ],
+    "url" : "https://github.com/yash-gadodia/claude-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "session",
+    "description" : "See the current context window fill and remaining tokens.",
+    "name" : "context-meter",
+    "pluginID" : "context-meter@awesome-claude-code-mods",
+    "sourcePath" : "mods/context-meter",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "session",
+    "description" : "Inspect reported plan windows and their reset times.",
+    "name" : "quota-watch",
+    "pluginID" : "quota-watch@awesome-claude-code-mods",
+    "sourcePath" : "mods/quota-watch",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "session",
+    "description" : "Track API cache reads, writes, and uncached input by request.",
+    "name" : "cache-inspector",
+    "pluginID" : "cache-inspector@awesome-claude-code-mods",
+    "sourcePath" : "mods/cache-inspector",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "session",
+    "description" : "Measure observed tool latency, call counts, and failures.",
+    "name" : "tool-timing",
+    "pluginID" : "tool-timing@awesome-claude-code-mods",
+    "sourcePath" : "mods/tool-timing",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "session",
+    "description" : "Keep the last 30 failed or refused tool calls in one pane.",
+    "name" : "error-inbox",
+    "pluginID" : "error-inbox@awesome-claude-code-mods",
+    "sourcePath" : "mods/error-inbox",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "session",
+    "description" : "Count successful Edit and Write calls by path.",
+    "name" : "edit-heatmap",
+    "pluginID" : "edit-heatmap@awesome-claude-code-mods",
+    "sourcePath" : "mods/edit-heatmap",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "session",
+    "description" : "Show duration, token totals, and interruption state per turn.",
+    "name" : "turn-timeline",
+    "pluginID" : "turn-timeline@awesome-claude-code-mods",
+    "sourcePath" : "mods/turn-timeline",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "session",
+    "description" : "Inspect the subagents reported by the session.",
+    "name" : "agent-board",
+    "pluginID" : "agent-board@awesome-claude-code-mods",
+    "sourcePath" : "mods/agent-board",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "git",
+    "description" : "Inspect local branches, upstreams, and dirty files.",
+    "name" : "branch-board",
+    "pluginID" : "branch-board@awesome-claude-code-mods",
+    "sourcePath" : "mods/branch-board",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "git",
+    "description" : "Review the staged diff before committing.",
+    "name" : "staged-review",
+    "pluginID" : "staged-review@awesome-claude-code-mods",
+    "sourcePath" : "mods/staged-review",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "git",
+    "description" : "Browse the latest 20 commits with author and subject.",
+    "name" : "commit-browser",
+    "pluginID" : "commit-browser@awesome-claude-code-mods",
+    "sourcePath" : "mods/commit-browser",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "git",
+    "description" : "List stashes and inspect a selected stash diff.",
+    "name" : "stash-browser",
+    "pluginID" : "stash-browser@awesome-claude-code-mods",
+    "sourcePath" : "mods/stash-browser",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "git",
+    "description" : "List worktree paths, branches, and locked states.",
+    "name" : "worktree-map",
+    "pluginID" : "worktree-map@awesome-claude-code-mods",
+    "sourcePath" : "mods/worktree-map",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "git",
+    "description" : "List unresolved paths and count conflict markers in tracked files.",
+    "name" : "conflict-radar",
+    "pluginID" : "conflict-radar@awesome-claude-code-mods",
+    "sourcePath" : "mods/conflict-radar",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "git",
+    "description" : "Read authorship for the first 80 lines of a chosen tracked file.",
+    "name" : "blame-view",
+    "pluginID" : "blame-view@awesome-claude-code-mods",
+    "sourcePath" : "mods/blame-view",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "git",
+    "description" : "Explain which Git ignore rule matches a path.",
+    "name" : "ignore-check",
+    "pluginID" : "ignore-check@awesome-claude-code-mods",
+    "sourcePath" : "mods/ignore-check",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "repository",
+    "description" : "Browse one directory at a time with clickable folders.",
+    "name" : "file-tree",
+    "pluginID" : "file-tree@awesome-claude-code-mods",
+    "sourcePath" : "mods/file-tree",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "repository",
+    "description" : "List npm scripts and package identity without running them.",
+    "name" : "package-scripts",
+    "pluginID" : "package-scripts@awesome-claude-code-mods",
+    "sourcePath" : "mods/package-scripts",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "repository",
+    "description" : "Inspect dependency groups from a package manifest.",
+    "name" : "dependency-table",
+    "pluginID" : "dependency-table@awesome-claude-code-mods",
+    "sourcePath" : "mods/dependency-table",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "repository",
+    "description" : "Find TODO, FIXME, and HACK notes in tracked files.",
+    "name" : "todo-finder",
+    "pluginID" : "todo-finder@awesome-claude-code-mods",
+    "sourcePath" : "mods/todo-finder",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "repository",
+    "description" : "Build a heading outline with source line numbers.",
+    "name" : "markdown-map",
+    "pluginID" : "markdown-map@awesome-claude-code-mods",
+    "sourcePath" : "mods/markdown-map",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "repository",
+    "description" : "Summarize top-level JSON keys with types and a formatted preview.",
+    "name" : "json-browser",
+    "pluginID" : "json-browser@awesome-claude-code-mods",
+    "sourcePath" : "mods/json-browser",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "repository",
+    "description" : "Preview quoted CSV fields, row counts, and column headers.",
+    "name" : "csv-table",
+    "pluginID" : "csv-table@awesome-claude-code-mods",
+    "sourcePath" : "mods/csv-table",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "repository",
+    "description" : "Show the last 60 lines of a small local log with an optional filter.",
+    "name" : "log-viewer",
+    "pluginID" : "log-viewer@awesome-claude-code-mods",
+    "sourcePath" : "mods/log-viewer",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "repository",
+    "description" : "List variable names and missing placeholders in an example env file.",
+    "name" : "env-example",
+    "pluginID" : "env-example@awesome-claude-code-mods",
+    "sourcePath" : "mods/env-example",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "repository",
+    "description" : "Compare two small text files by line without editing either.",
+    "name" : "file-compare",
+    "pluginID" : "file-compare@awesome-claude-code-mods",
+    "sourcePath" : "mods/file-compare",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workspace",
+    "description" : "Save short notes beside your conversation.",
+    "name" : "scratchpad",
+    "pluginID" : "scratchpad@awesome-claude-code-mods",
+    "sourcePath" : "mods/scratchpad",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workspace",
+    "description" : "Add tasks and toggle done status.",
+    "name" : "task-board",
+    "pluginID" : "task-board@awesome-claude-code-mods",
+    "sourcePath" : "mods/task-board",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workspace",
+    "description" : "Record dated engineering decisions.",
+    "name" : "decision-log",
+    "pluginID" : "decision-log@awesome-claude-code-mods",
+    "sourcePath" : "mods/decision-log",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workspace",
+    "description" : "Save and copy short code or command snippets.",
+    "name" : "snippet-shelf",
+    "pluginID" : "snippet-shelf@awesome-claude-code-mods",
+    "sourcePath" : "mods/snippet-shelf",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workspace",
+    "description" : "Save labeled HTTP and HTTPS reference links.",
+    "name" : "link-shelf",
+    "pluginID" : "link-shelf@awesome-claude-code-mods",
+    "sourcePath" : "mods/link-shelf",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workspace",
+    "description" : "Save reusable prompts and put one into the composer as a draft.",
+    "name" : "prompt-shelf",
+    "pluginID" : "prompt-shelf@awesome-claude-code-mods",
+    "sourcePath" : "mods/prompt-shelf",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workspace",
+    "description" : "Keep a persistent checklist for a release.",
+    "name" : "release-checklist",
+    "pluginID" : "release-checklist@awesome-claude-code-mods",
+    "sourcePath" : "mods/release-checklist",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workspace",
+    "description" : "Keep a dated list of progress and next steps, then copy it.",
+    "name" : "handoff-notes",
+    "pluginID" : "handoff-notes@awesome-claude-code-mods",
+    "sourcePath" : "mods/handoff-notes",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "utilities",
+    "description" : "Test a regular expression against text and see matched ranges.",
+    "name" : "regex-lab",
+    "pluginID" : "regex-lab@awesome-claude-code-mods",
+    "sourcePath" : "mods/regex-lab",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "utilities",
+    "description" : "Validate and pretty-print JSON without touching a file.",
+    "name" : "json-format",
+    "pluginID" : "json-format@awesome-claude-code-mods",
+    "sourcePath" : "mods/json-format",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "utilities",
+    "description" : "Inspect URL components and decoded query parameters locally.",
+    "name" : "url-lab",
+    "pluginID" : "url-lab@awesome-claude-code-mods",
+    "sourcePath" : "mods/url-lab",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "utilities",
+    "description" : "Encode UTF-8 text or decode strict Base64.",
+    "name" : "base64-lab",
+    "pluginID" : "base64-lab@awesome-claude-code-mods",
+    "sourcePath" : "mods/base64-lab",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "utilities",
+    "description" : "Convert Unix seconds, milliseconds, or an ISO date to UTC.",
+    "name" : "time-lab",
+    "pluginID" : "time-lab@awesome-claude-code-mods",
+    "sourcePath" : "mods/time-lab",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "utilities",
+    "description" : "Calculate SHA-256, SHA-384, or SHA-512 for UTF-8 text.",
+    "name" : "hash-lab",
+    "pluginID" : "hash-lab@awesome-claude-code-mods",
+    "sourcePath" : "mods/hash-lab",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "utilities",
+    "description" : "Convert hex colors and measure contrast against a background.",
+    "name" : "color-lab",
+    "pluginID" : "color-lab@awesome-claude-code-mods",
+    "sourcePath" : "mods/color-lab",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "utilities",
+    "description" : "Generate up to 20 random UUID v4 values locally.",
+    "name" : "uuid-lab",
+    "pluginID" : "uuid-lab@awesome-claude-code-mods",
+    "sourcePath" : "mods/uuid-lab",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "utilities",
+    "description" : "Count words, lines, Unicode code points, and UTF-8 bytes.",
+    "name" : "text-counter",
+    "pluginID" : "text-counter@awesome-claude-code-mods",
+    "sourcePath" : "mods/text-counter",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "utilities",
+    "description" : "Play a local text animation whose frames are separated by a form feed.",
+    "name" : "ascii-flipbook",
+    "pluginID" : "ascii-flipbook@awesome-claude-code-mods",
+    "sourcePath" : "mods/ascii-flipbook",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workflow",
+    "description" : "Run a 25-minute focus countdown with pause, reset, and a toast.",
+    "name" : "focus-clock",
+    "pluginID" : "focus-clock@awesome-claude-code-mods",
+    "sourcePath" : "mods/focus-clock",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workflow",
+    "description" : "Time a task with start, pause, and lap markers.",
+    "name" : "stopwatch",
+    "pluginID" : "stopwatch@awesome-claude-code-mods",
+    "sourcePath" : "mods/stopwatch",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workflow",
+    "description" : "Record likely test, lint, and build commands and their tool status.",
+    "name" : "test-ledger",
+    "pluginID" : "test-ledger@awesome-claude-code-mods",
+    "sourcePath" : "mods/test-ledger",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workflow",
+    "description" : "Keep the last 40 Bash command strings and copy one for reuse.",
+    "name" : "command-history",
+    "pluginID" : "command-history@awesome-claude-code-mods",
+    "sourcePath" : "mods/command-history",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workflow",
+    "description" : "Warn when observed file edits leave a chosen path prefix.",
+    "name" : "scope-watch",
+    "pluginID" : "scope-watch@awesome-claude-code-mods",
+    "sourcePath" : "mods/scope-watch",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "workflow",
+    "description" : "Toggle a reminder guard that refuses built-in mutating tools and Bash.",
+    "name" : "read-only-mode",
+    "pluginID" : "read-only-mode@awesome-claude-code-mods",
+    "sourcePath" : "mods/read-only-mode",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Show quota, reset countdowns, tokens, and cost in a composer strip.",
+    "name" : "desktop-usage-strip",
+    "pluginID" : "desktop-usage-strip@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-usage-strip",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Chart context headroom and sampled window growth.",
+    "name" : "desktop-context-map",
+    "pluginID" : "desktop-context-map@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-context-map",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Chart reported plan windows with live reset countdowns.",
+    "name" : "desktop-quota-clock",
+    "pluginID" : "desktop-quota-clock@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-quota-clock",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Set a local budget reminder against reported session USD.",
+    "name" : "desktop-cost-watch",
+    "pluginID" : "desktop-cost-watch@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-cost-watch",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Chart uncached input, output, cache reads, and cache writes.",
+    "name" : "desktop-token-flow",
+    "pluginID" : "desktop-token-flow@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-token-flow",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Chart completed tool latency and failures by tool.",
+    "name" : "desktop-tool-pulse",
+    "pluginID" : "desktop-tool-pulse@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-tool-pulse",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Chart turn durations with interruption labels.",
+    "name" : "desktop-turn-chart",
+    "pluginID" : "desktop-turn-chart@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-turn-chart",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Chart successful built-in edits grouped by file path.",
+    "name" : "desktop-edit-map",
+    "pluginID" : "desktop-edit-map@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-edit-map",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Filter reported agents and copy a status snapshot.",
+    "name" : "desktop-agent-desk",
+    "pluginID" : "desktop-agent-desk@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-agent-desk",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Switch between Git status, staged diff, and unstaged diff.",
+    "name" : "desktop-review-desk",
+    "pluginID" : "desktop-review-desk@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-review-desk",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Read a bounded text file with line filtering and path drafting.",
+    "name" : "desktop-file-desk",
+    "pluginID" : "desktop-file-desk@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-file-desk",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Render a local Markdown document with a source tab.",
+    "name" : "desktop-markdown-reader",
+    "pluginID" : "desktop-markdown-reader@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-markdown-reader",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Compare two local text files in responsive side-by-side columns.",
+    "name" : "desktop-compare-desk",
+    "pluginID" : "desktop-compare-desk@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-compare-desk",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Build a saved prompt from goal, constraints, and acceptance criteria.",
+    "name" : "desktop-prompt-builder",
+    "pluginID" : "desktop-prompt-builder@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-prompt-builder",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Combine observed tool and turn counts with a manual handoff note.",
+    "name" : "desktop-session-brief",
+    "pluginID" : "desktop-session-brief@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-session-brief",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Keep labeled web references with copy and delete controls.",
+    "name" : "desktop-bookmark-dock",
+    "pluginID" : "desktop-bookmark-dock@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-bookmark-dock",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Move saved work items through To do, Doing, and Done columns.",
+    "name" : "desktop-checklist-desk",
+    "pluginID" : "desktop-checklist-desk@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-checklist-desk",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Show the current workspace, Git state, and session usage together.",
+    "name" : "desktop-workspace-home",
+    "pluginID" : "desktop-workspace-home@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-workspace-home",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Set an adjustable countdown with a visual progress chart and toast.",
+    "name" : "desktop-break-bell",
+    "pluginID" : "desktop-break-bell@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-break-bell",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "Yash Thakker",
+    "catalogSource" : "whyashthakker/awesome-claude-code-mods",
+    "category" : "productivity",
+    "description" : "Validate pasted JSON with a searchable key summary and formatted preview.",
+    "name" : "desktop-json-desk",
+    "pluginID" : "desktop-json-desk@awesome-claude-code-mods",
+    "sourcePath" : "mods/desktop-json-desk",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/whyashthakker/awesome-claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "One live line above the prompt per running subagent or background shell: time, tool count and what it's doing. /radar shows every agent and its messages.",
+    "name" : "agent-radar",
+    "pluginID" : "agent-radar@claude-code-mods",
+    "sourcePath" : "mods/agent-radar",
+    "tags" : [
+      "band",
+      "pane",
+      "toast",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "Guard your repo",
+    "description" : "Holds risky Bash commands and shows what they would change before they run.",
+    "name" : "blast-radius",
+    "pluginID" : "blast-radius@claude-code-mods",
+    "sourcePath" : "mods/blast-radius",
+    "tags" : [
+      "band",
+      "pane",
+      "guard",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "Your context window as a stacked bar above the prompt, a color per category, with token counts and the compaction point. /context-bar shows or hides it.",
+    "name" : "context-bar",
+    "pluginID" : "context-bar@claude-code-mods",
+    "sourcePath" : "mods/context-bar",
+    "tags" : [
+      "band",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "Shows if this session has a Playwright browser and who holds it. /browser clean closes leftover browsers. A subagent that wants the browser waits until the one using it is done.",
+    "name" : "browser-lanes",
+    "pluginID" : "browser-lanes@claude-code-mods",
+    "sourcePath" : "mods/browser-lanes",
+    "tags" : [
+      "band",
+      "toast",
+      "guard",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "Shows the Markdown files Claude edits, rendered like GitHub, in a pane next to the chat. Before and after side by side. /md opens it.",
+    "name" : "md-preview",
+    "pluginID" : "md-preview@claude-code-mods",
+    "sourcePath" : "mods/md-preview",
+    "tags" : [
+      "pane",
+      "toast",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "My setup (fork and adapt)",
+    "description" : "One line above the prompt with what needs you: next meeting, PRs, Linear issues and Slack DMs. /glance lists them all.",
+    "name" : "glance",
+    "pluginID" : "glance@claude-code-mods",
+    "sourcePath" : "mods/glance",
+    "tags" : [
+      "band",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "A GitHub-style grid of your Claude Code time in a /heatmap pane, with streaks, peaks and top projects.",
+    "name" : "heatmap",
+    "pluginID" : "heatmap@claude-code-mods",
+    "sourcePath" : "mods/heatmap",
+    "tags" : [
+      "pane",
+      "toast",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "My setup (fork and adapt)",
+    "description" : "Holds `gh pr merge` until CI passes and one Codex review (OpenAI's luna model) has run. A PR line above the prompt, and /gate shows the PR's status.",
+    "name" : "merge-gate",
+    "pluginID" : "merge-gate@claude-code-mods",
+    "sourcePath" : "mods/merge-gate",
+    "tags" : [
+      "band",
+      "guard",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "/mission opens a live map of the main agent, its subagents and every tool call, plus a code map of the files they touch.",
+    "name" : "mission-control",
+    "pluginID" : "mission-control@claude-code-mods",
+    "sourcePath" : "mods/mission-control",
+    "tags" : [
+      "band",
+      "pane",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "After each turn, 2 or 3 likely next prompts above the prompt. Press 1, 2 or 3 in an empty prompt to draft one, 0 to dismiss.",
+    "name" : "next-steps",
+    "pluginID" : "next-steps@claude-code-mods",
+    "sourcePath" : "mods/next-steps",
+    "tags" : [
+      "band"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "For fun",
+    "description" : "What Spotify is playing, one line above the prompt: track, progress and the lyric being sung, with ⏮ ⏸ ⏭ buttons. /music controls it too. macOS.",
+    "name" : "now-playing",
+    "pluginID" : "now-playing@claude-code-mods",
+    "sourcePath" : "mods/now-playing",
+    "tags" : [
+      "band",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "The current prayer and how long is left, the next prayer, and zawal, above the prompt. Computed on your computer from your location; nothing is sent anywhere.",
+    "name" : "prayer-times",
+    "pluginID" : "prayer-times@claude-code-mods",
+    "sourcePath" : "mods/prayer-times",
+    "tags" : [
+      "band",
+      "toast",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "For fun",
+    "description" : "YouTube Shorts in a terminal pane: plays while Claude works, pauses when Claude is done.",
+    "name" : "reels",
+    "pluginID" : "reels@claude-code-mods",
+    "sourcePath" : "mods/reels",
+    "tags" : [
+      "pane",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "Step through the last turn's file edits, one diff at a time.",
+    "name" : "replay-theater",
+    "pluginID" : "replay-theater@claude-code-mods",
+    "sourcePath" : "mods/replay-theater",
+    "tags" : [
+      "pane",
+      "toast",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "A live line above the prompt for each running code review: Codex or a review subagent, its model, what it reviews, time, and Codex's latest output. A toast with the findings when it ends.",
+    "name" : "review-watch",
+    "pluginID" : "review-watch@claude-code-mods",
+    "sourcePath" : "mods/review-watch",
+    "tags" : [
+      "band",
+      "toast"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "My setup (fork and adapt)",
+    "description" : "Writing and git rules: replaces em dashes in prose, and asks before git commit --amend, an unformatted push, or personal info in notes and commits.",
+    "name" : "rulebook-guard",
+    "pluginID" : "rulebook-guard@claude-code-mods",
+    "sourcePath" : "mods/rulebook-guard",
+    "tags" : [
+      "guard",
+      "toast"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "My setup (fork and adapt)",
+    "description" : "Names untitled sessions through unpause. /park saves where you left off, and a resumed session shows it.",
+    "name" : "session-saver",
+    "pluginID" : "session-saver@claude-code-mods",
+    "sourcePath" : "mods/session-saver",
+    "tags" : [
+      "band",
+      "toast",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "For fun",
+    "description" : "Snake in a pane while Claude works, paused when it's done. Opt-in, so nothing opens until /snake.",
+    "name" : "snake",
+    "pluginID" : "snake@claude-code-mods",
+    "sourcePath" : "mods/snake",
+    "tags" : [
+      "pane",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "A live forecast of the context window, with a prompt-cache countdown, drawn above the prompt.",
+    "name" : "token-weather",
+    "pluginID" : "token-weather@claude-code-mods",
+    "sourcePath" : "mods/token-weather",
+    "tags" : [
+      "band"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "A prompt-cache line under your status line, from Claude Code's own cache figures: time left while warm, hit rate and misses, and how many tokens the next message re-caches once cold. /cache-clock setup adds it.",
+    "name" : "cache-clock",
+    "pluginID" : "cache-clock@claude-code-mods",
+    "sourcePath" : "mods/cache-clock",
+    "tags" : [
+      "statusline",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "Your plan's 5-hour and 7-day usage as small bars above the prompt, with the reset countdown and the session's cost.",
+    "name" : "usage-meter",
+    "pluginID" : "usage-meter@claude-code-mods",
+    "sourcePath" : "mods/usage-meter",
+    "tags" : [
+      "band",
+      "toast"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "A live recap above the prompt: goal, doing now, waiting on you, next. /where for a longer one.",
+    "name" : "where-am-i",
+    "pluginID" : "where-am-i@claude-code-mods",
+    "sourcePath" : "mods/where-am-i",
+    "tags" : [
+      "band",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "Spend less",
+    "description" : "Picks the model for each subagent that names none, with OpenAI's Decisions API or Jev, from its short label only. One line per spawn above the prompt; /route shows each pick and what each subagent cost.",
+    "name" : "switchboard",
+    "pluginID" : "switchboard@claude-code-mods",
+    "sourcePath" : "mods/switchboard",
+    "tags" : [
+      "band",
+      "pane",
+      "guard",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "Your OpenAI API credit above the prompt: an estimated balance with a gauge, today's spend, where the money mostly went, and the last call. /openai-balance shows the breakdown.",
+    "name" : "openai-balance",
+    "pluginID" : "openai-balance@claude-code-mods",
+    "sourcePath" : "mods/openai-balance",
+    "tags" : [
+      "band",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "hamzafer",
+    "catalogSource" : "hamzafer/claude-code-mods",
+    "category" : "See what's happening",
+    "description" : "Your OpenRouter credit above the prompt: the balance with a gauge, today's spend and where the money mostly went. /openrouter-balance shows the breakdown.",
+    "name" : "openrouter-balance",
+    "pluginID" : "openrouter-balance@claude-code-mods",
+    "sourcePath" : "mods/openrouter-balance",
+    "tags" : [
+      "band",
+      "command"
+    ],
+    "url" : "https://github.com/hamzafer/claude-code-mods"
+  },
+  {
+    "author" : "T-AI-Labs",
+    "catalogSource" : "T-AI-Labs/claude-code-mods",
+    "description" : "context-meter and usage-limits in one band above the prompt: the context fill with its auto-compact threshold, Compact and Clear, and the 5-hour and weekly usage limits beneath it.",
+    "name" : "context-usage",
+    "pluginID" : "context-usage@T-AI-Labs",
+    "sourcePath" : "context-usage",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/T-AI-Labs/claude-code-mods"
+  },
+  {
+    "author" : "T-AI-Labs",
+    "catalogSource" : "T-AI-Labs/claude-code-mods",
+    "description" : "Prompt-cache hit rate in one row above the prompt, with how long the cache stays warm and a Keep warm switch that refreshes it while you are away.",
+    "name" : "cache-meter",
+    "pluginID" : "cache-meter@T-AI-Labs",
+    "sourcePath" : "cache-meter",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/T-AI-Labs/claude-code-mods"
+  },
+  {
+    "author" : "T-AI-Labs",
+    "catalogSource" : "T-AI-Labs/claude-code-mods",
+    "description" : "Context fill in one row above the prompt, with a switchable auto-compact threshold and Compact and Clear buttons.",
+    "name" : "context-meter",
+    "pluginID" : "context-meter@T-AI-Labs",
+    "sourcePath" : "context-meter",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/T-AI-Labs/claude-code-mods"
+  },
+  {
+    "author" : "T-AI-Labs",
+    "catalogSource" : "T-AI-Labs/claude-code-mods",
+    "description" : "One row above the prompt: how much of the 5-hour and weekly usage limits is used, in percent, with the time until each resets.",
+    "name" : "usage-limits",
+    "pluginID" : "usage-limits@T-AI-Labs",
+    "sourcePath" : "usage-limits",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/T-AI-Labs/claude-code-mods"
+  },
+  {
+    "author" : "T-AI-Labs",
+    "catalogSource" : "T-AI-Labs/claude-code-mods",
+    "description" : "A pane that lists every skill, command, agent, mod, plugin, settings hook, MCP server and tool by category, with usage, token cost, updates and GitHub stats, and buttons to insert, run, update, disable or uninstall.",
+    "name" : "catalog-pane",
+    "pluginID" : "catalog-pane@T-AI-Labs",
+    "sourcePath" : "catalog-pane",
+    "tags" : [
+
+    ],
+    "url" : "https://github.com/T-AI-Labs/claude-code-mods"
+  }
+]

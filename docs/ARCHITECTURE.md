@@ -1,6 +1,6 @@
-# claudefont architecture
+# CC#Skin architecture
 
-claudefont is an independently developed native macOS application. Its client,
+CC#Skin is an independently developed native macOS application. Its client,
 command-line engine, archive handling, styling, backup and recovery logic are
 implemented in this repository using Swift, SwiftUI, AppKit, CoreText and
 macOS system tools. The project distributes neither Claude code nor font files.
@@ -9,7 +9,8 @@ macOS system tools. The project distributes neither Claude code nor font files.
 
 | Location | Responsibility |
 | --- | --- |
-| `gui/WorkspaceView.swift` | Six-page workspace, controls and sample previews |
+| `gui/WorkspaceView.swift` | Seven-page workspace, controls and sample previews |
+| `gui/ModsCore.swift`, `gui/ModsStore.swift`, `gui/ModsView.swift` | Official Claude Code plugin CLI, catalog and native Mods entry |
 | `gui/Model.swift` | Selected target, configuration and CLI execution |
 | `gui/Localization.swift` | Chinese and English interface text |
 | `gui/Themes.swift` | Portable themes and compatibility presentation |
@@ -58,3 +59,5 @@ It leaves the selected application unchanged until Apply. Test profiles do not
 copy sign-in or conversations. Operations are local; release checks contact
 GitHub. The distributed app has no third-party package dependency. Browser
 regression tooling is used only during development.
+
+CC#Skin retains the claudefont bundle identifier and storage paths for in-place upgrades. Community catalog refreshes contact GitHub; installed Mods use the external official Claude Code CLI. Four source partitions have independent refresh/cache fallback. Repository metrics and local detail counts are distinct values; the native grid uses `ModsFilterControl.swift` to keep selection controls equal in width. No third-party plugin code is bundled.

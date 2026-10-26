@@ -4,7 +4,7 @@ import SwiftUI
 import Foundation
 
 enum Updater {
-    static let version = "1.0.0"
+    static var version: String { Bundle.main.object(forInfoDictionaryKey:"CFBundleShortVersionString") as? String ?? "1.1.0" }
     static let releases = URL(string: "https://github.com/Orxooo/claudefont/releases")!
     static let endpoint = URL(string: "https://api.github.com/repos/Orxooo/claudefont/releases/latest")!
     static func isNewer(_ tag: String) -> Bool {
@@ -36,7 +36,7 @@ final class UpdateWatcher: ObservableObject {
         guard !checking else { return }; checking = true; message = ""
         var request = URLRequest(url: Updater.endpoint); request.timeoutInterval = 20
         request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
-        request.setValue("claudefont/" + Updater.version, forHTTPHeaderField: "User-Agent")
+        request.setValue("CCSkin/" + Updater.version, forHTTPHeaderField: "User-Agent")
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             DispatchQueue.main.async {
                 guard let self else { return }; self.checking = false

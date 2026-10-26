@@ -1,5 +1,15 @@
 # Changelog
 
+## CC#Skin 1.2.0 · build 6 — local, unpublished
+
+- Official product name CC#Skin and the user's new icon artwork.
+- Four metadata sources, 156 marketplace entries, source/category/install-state filters and composable search.
+- Repository Stars, repository push date, alphabetical and local detail-view sorting; clear missing-data and metric scope labels.
+- Dated offline metric snapshots, independent partial catalog refresh and local-only browsing history.
+- Full-width filter grid with equal native selection controls, shared label widths and consistent spacing.
+- Fresh marketplace identity checks before catalog installs prevent stale registry collisions.
+- 35 core, 21 catalog, 13 discovery and 16 store checks; verification scope is recorded in docs/VERIFICATION.md.
+
 ## V1.0.0 · build 4 — 2026-10-03
 
 首个稳定版本，采用 GPL-3.0-only。
@@ -38,3 +48,7 @@ focus and the icon. Recorded results: 65 engine, 6 loader and 18 browser/font-lo
 checks passed. Startup and Songti glyphs were observed on local Claude 2.19675.0.
 See the verification record for limits. Version remains 1.0.0; replace earlier
 builds manually.
+
+## Local Mods build — 1.1.0 build 5 (unpublished)
+
+Native Mods discovery, installed state, GitHub marketplaces and queued user-scope lifecycle operations, using community CC0 metadata and official Claude Code CLI >=2.1.287. Typography application retains the existing quit-first, backup and signing flow. Bundle identity and the then-current icon were retained. See docs/MODS.md.

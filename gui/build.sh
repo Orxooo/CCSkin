@@ -3,14 +3,14 @@
 # Copyright (C) 2026 Orxooo
 set -euo pipefail
 repo=$(cd "$(dirname "$0")/.." && pwd)
-cache=${CLAUDEFONT_BUILD_DIR:-"$HOME/Library/Caches/claudefont/rewrite-20261002"}
+cache=${CLAUDEFONT_BUILD_DIR:-"$HOME/Library/Caches/claudefont/CCSkin-build"}
 case "$cache" in "$HOME/Library/Caches/claudefont"/*|"$HOME/Library/Application Support/claudefont-development"/*) ;; *) echo "Use the claudefont cache or development support directory for build output" >&2; exit 2;; esac
 [ ! -L "$cache" ] || { echo "Refusing a symlink build directory" >&2; exit 2; }
 mkdir -p "$cache"
 cache=$(cd "$cache" && pwd -P)
 case "$cache" in "$HOME/Library/Caches/claudefont"/*|"$HOME/Library/Application Support/claudefont-development"/*) ;; *) echo "Build output resolved outside the claudefont build directories" >&2; exit 2;; esac
 case "$cache" in "$repo"|"$repo"/*|*"/Mobile Documents/"*) echo "Build output must be outside the repository and iCloud" >&2; exit 2;; esac
-app="$cache/claudefont.app"
+app="$cache/CC#Skin.app"
 if [ -e "$app" ]; then
   [ ! -L "$app" ] && [ -d "$app/Contents" ] || { echo "Refusing unsafe output path" >&2; exit 2; }
   rm -rf "$app"
@@ -35,25 +35,26 @@ for file in "$repo"/gui/*.swift; do
 done
 export CLANG_MODULE_CACHE_PATH="$cache/modules"
 /usr/bin/xcrun swiftc -O -target arm64-apple-macos26.0 -module-cache-path "$cache/modules" "${shared_sources[@]}" "${cli_sources[@]}" -o "$app/Contents/Resources/claudefont"
-/usr/bin/xcrun swiftc -O -target arm64-apple-macos26.0 -parse-as-library -module-cache-path "$cache/modules" "${shared_sources[@]}" "${gui_sources[@]}" -o "$app/Contents/MacOS/claudefont"
+/usr/bin/xcrun swiftc -O -target arm64-apple-macos26.0 -parse-as-library -module-cache-path "$cache/modules" "${shared_sources[@]}" "${gui_sources[@]}" -o "$app/Contents/MacOS/CCSkin"
 /usr/bin/xcrun swift -module-cache-path "$cache/modules" "$repo/gui/render-icon.swift" "$cache/claudefont.iconset"
-/usr/bin/iconutil -c icns "$cache/claudefont.iconset" -o "$app/Contents/Resources/claudefont.icns"
+/usr/bin/iconutil -c icns "$cache/claudefont.iconset" -o "$app/Contents/Resources/ccskin.icns"
 cp "$repo/gui/setup-test-copy.sh" "$repo/gui/remove-test-copy.sh" "$repo/LICENSE" "$repo/NOTICE" "$app/Contents/Resources/"
+cp "$repo/gui/Resources/mods-catalog.json" "$repo/gui/Resources/mods-statistics.json" "$repo/gui/Resources/mods-sources-NOTICE.txt" "$app/Contents/Resources/"
 cat > "$app/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
 <key>CFBundleIdentifier</key><string>io.github.orxooo.claudefont</string>
-<key>CFBundleName</key><string>claudefont</string>
-<key>CFBundleDisplayName</key><string>claudefont</string>
-<key>CFBundleExecutable</key><string>claudefont</string>
-<key>CFBundleShortVersionString</key><string>1.0.0</string>
-<key>CFBundleVersion</key><string>4</string>
+<key>CFBundleName</key><string>CC#Skin</string>
+<key>CFBundleDisplayName</key><string>CC#Skin</string>
+<key>CFBundleExecutable</key><string>CCSkin</string>
+<key>CFBundleShortVersionString</key><string>1.2.0</string>
+<key>CFBundleVersion</key><string>6</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleIconFile</key><string>claudefont</string>
+<key>CFBundleIconFile</key><string>ccskin</string>
 <key>LSMinimumSystemVersion</key><string>26.0</string>
 <key>NSHighResolutionCapable</key><true/>
-<key>NSSystemAdministrationUsageDescription</key><string>claudefont needs access to back up, update and restore the Claude app you select.</string>
+<key>NSSystemAdministrationUsageDescription</key><string>CC#Skin needs access to back up, update and restore the Claude app you select.</string>
 <key>NSHumanReadableCopyright</key><string>Copyright © 2026 Orxooo. GPL-3.0-only.</string>
 </dict></plist>
 PLIST
