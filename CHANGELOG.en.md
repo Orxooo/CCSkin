@@ -9,6 +9,8 @@
 - Filter by source, category and installation status; sort by stars, updates or local views.
 - Queue plugin installs, enable/disable, updates and removal.
 - Align sidebar labels and filter controls; update repository and download links.
+- Fix built-in terminal scaling: 110% and other scales now apply to both the loading placeholder and live terminal while keeping the vendor font and zoom logic.
+- Extend the selected background to the composer surround, scroll fades, sidebar and plugin code panels in light and dark modes.
 
 ## [1.0.0](https://github.com/Orxooo/CCSkin/releases/tag/v1.0.0) · 2026-10-03
 
