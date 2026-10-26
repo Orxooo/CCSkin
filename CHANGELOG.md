@@ -1,70 +1,17 @@
-# Changelog
+# 更新记录
 
-## CC#Skin 1.2.1 · build 8 — 2026-10-26
+[English](CHANGELOG.en.md) · [下载最新版](https://github.com/Orxooo/CCSkin/releases/latest)
 
-- Align every sidebar title using a fixed-width icon column and shared spacing.
-- Rename the GitHub repository to CCSkin and update release, help and clone links.
-- Point the built-in updater at the renamed repository.
+## [1.1.0](https://github.com/Orxooo/CCSkin/releases/tag/v1.1.0) · 2026-10-26
 
-## CC#Skin 1.2.0 · build 7 — 2026-10-26
+- 应用更名为 CC#Skin，换用新图标。
+- 新增 Mods 管理：4 个来源、156 项目录，可添加自己的仓库。
+- 支持来源、分类和安装状态筛选，以及 Stars、更新日期和本机浏览排序。
+- 支持插件安装、启停、更新和卸载，选好后统一应用。
+- 调整筛选下拉与侧栏对齐，更新仓库和下载链接。
 
-- Official product name CC#Skin and new icon artwork.
-- Four metadata sources, 156 marketplace entries, source/category/install-state filters and composable search.
-- Repository Stars, repository push date, alphabetical and local detail-view sorting; clear missing-data and metric scope labels.
-- Dated offline metric snapshots, independent partial catalog refresh and local-only browsing history.
-- Full-width filter grid with equal native selection controls, shared label widths and consistent spacing.
-- Fresh marketplace identity checks before catalog installs prevent stale registry collisions.
-- 35 core, 21 catalog, 13 discovery and 16 store checks; verification scope is recorded in docs/VERIFICATION.md.
+## [1.0.0](https://github.com/Orxooo/CCSkin/releases/tag/v1.0.0) · 2026-10-03
 
-## Earlier ClaudeFont rename work (previously unreleased)
-
-- 应用名称统一为 **ClaudeFont**：窗口、侧栏、关于页面、权限说明、主题导出文件名及构建产物使用同一名称。
-- 重整中英文 README，核对功能、安装、校验、测试副本、兼容性和还原说明，并同步开发与贡献文档。
-- Renamed the app to **ClaudeFont** across windows, sidebar, About, permission text, theme exports and build output.
-- Reorganized both READMEs and checked feature, installation, checksum, test-copy, compatibility and restoration copy; updated development and contribution docs.
-
-现有 Bundle ID、CLI 命令、配置及备份目录保持兼容。此改名尚未发布；历史发行包名称以发行页为准。
-The existing bundle ID, CLI command and data directories remain compatible. The rename is unreleased; historical filenames follow their release pages.
-
-## V1.0.0 · build 4 — 2026-10-03
-
-首个稳定版本，采用 GPL-3.0-only。
-
-### 功能
-
-- SwiftUI 原生客户端，中文与英文界面，六页工作区。
-- 中文、英文、界面和代码字体，字号、阅读排版与深浅配色。
-- 主题保存、载入与 JSON 导入导出。
-- 目标选择、独立测试副本、完整应用备份、还原、诊断和日志。
-- 经核验的设置与同版本原版备份导入。
-- GitHub Releases 更新检查与手动下载。
-
-### 构建 4 修正
-
-- CoreText 解析真实本地字形名称，修复字体无法加载。
-- 修复重新签名后的 Electron 动态库加载崩溃，保留嵌套框架签名。
-- 验证持续运行的 renderer，加载失败或反复重启会回滚。
-- 修复测试副本的运行文件签名与 helper 名称解析。
-- 应用前提示退出；统一通知圆角，去掉菜单多余描边和图标白色外圈。
-
-65 项引擎、6 项动态库/启动和 18 项浏览器样式/字形加载检查通过。
-本机 Claude 2.19675.0 已确认启动与宋体显示。范围见 [验证记录](docs/VERIFICATION.md)。
-已安装较早构建的用户请重新下载；版本仍为 1.0.0，同版本构建不会触发更新提示。
-
-### English
-
-The first stable release includes a bilingual native SwiftUI workspace, font
-and typography settings, light/dark colors, portable themes, independent test
-copies, full backups/restoration, diagnostics and GitHub release checks.
-
-Build 4 resolves local font-face names with CoreText, fixes Electron library
-loading after signing, validates persistent renderer readiness, repairs test
-launcher signing/helper lookup and refines notification corners, dropdown
-focus and the icon. Recorded results: 65 engine, 6 loader and 18 browser/font-load
-checks passed. Startup and Songti glyphs were observed on local Claude 2.19675.0.
-See the verification record for limits. Version remains 1.0.0; replace earlier
-builds manually.
-
-## Local Mods build — 1.1.0 build 5 (unpublished)
-
-Native Mods discovery, installed state, GitHub marketplaces and queued user-scope lifecycle operations, using community CC0 metadata and official Claude Code CLI >=2.1.287. Typography application retains the existing quit-first, backup and signing flow. Bundle identity and the then-current icon were retained. See docs/MODS.md.
+- 首个正式版本，支持字体、排版、配色与主题管理。
+- 提供测试副本、备份还原、日志和更新检查。
+- 修复本地字体加载、重新签名后的启动和测试副本问题。

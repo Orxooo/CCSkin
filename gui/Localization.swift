@@ -24,7 +24,7 @@ func t(_ key: String, _ replacements: [String:String] = [:]) -> String {
 }
 private let localization: [String:(String,String)] = [
     "about.title": ("关于 CC#Skin", "About CC#Skin"),
-    "about.version": ("版本 {v} · 构建 {b}", "Version {v} · Build {b}"),
+    "about.version": ("版本 {v}", "Version {v}"),
     "about.tagline": ("为 Claude 桌面版调整字体、阅读排版和配色。", "Tune fonts, reading layout and colors in Claude Desktop."),
     "about.lang": ("界面语言", "Language"), "about.lang.auto": ("跟随系统", "System language"),
     "about.footer": ("GPL-3.0-only 开源软件。与 Anthropic 无隶属关系。", "Open source under GPL-3.0-only. Unaffiliated with Anthropic."),

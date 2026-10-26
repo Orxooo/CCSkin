@@ -1,4 +1,4 @@
-## Mods 入口（CC#Skin 1.2.0）
+## Mods 入口（CC#Skin 1.1.0）
 
 「Mods」页提供多来源搜索、已安装插件、GitHub 市场和待应用列表。内置快照含 156 项：ClaudeMods 56 项、Awesome Mods 70 项、Hamza's Mods 25 项、T-AI-Labs 5 项。元数据分别来自 [omarcevi/claudemods](https://github.com/omarcevi/claudemods)（CC0）、[whyashthakker/awesome-claude-code-mods](https://github.com/whyashthakker/awesome-claude-code-mods)、[hamzafer/claude-code-mods](https://github.com/hamzafer/claude-code-mods) 和 [T-AI-Labs/claude-code-mods](https://github.com/T-AI-Labs/claude-code-mods)（后三者 MIT）。来源间可能收录相同功能或同名 Mod，安装身份包含市场名。许可证随包保留，不分发第三方插件代码。
 
@@ -19,7 +19,7 @@
 Focused checks: `swiftc -parse-as-library gui/ModsCore.swift tests/check_mods.swift -o /tmp/CC#Skin-mods-check && /tmp/CC#Skin-mods-check`。隔离 CLI 检查还可传入 `MODS_TEST_CLI`、`MODS_TEST_CONFIG`；store 检查使用 `tests/check_mods_store.swift`，另需 `MODS_TEST_MARKET` 指向无 hooks 的本地测试市场。不要对日常配置运行测试变更。
 
 
-## Mods entry (CC#Skin 1.2.0)
+## Mods entry (CC#Skin 1.1.0)
 
 The Mods page aggregates 156 marketplace entries from four sources: [ClaudeMods](https://github.com/omarcevi/claudemods) (56, CC0), [Awesome Mods](https://github.com/whyashthakker/awesome-claude-code-mods) (70, MIT), [Hamza's Mods](https://github.com/hamzafer/claude-code-mods) (25, MIT) and [T-AI-Labs](https://github.com/T-AI-Labs/claude-code-mods) (5, MIT). Licenses accompany the metadata. Third-party plugin code is not bundled. Similar Mods can appear in multiple marketplaces; installation identities include the marketplace name.
 

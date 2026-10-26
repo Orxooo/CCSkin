@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="300" viewBox="0 0 1280 300" role="img" aria-labelledby="title desc">
+  <title id="title">CC#Skin</title>
+  <desc id="desc">Fonts, themes and Mods for Claude on macOS.</desc>
+  <rect width="1280" height="300" rx="20" fill="#202321"/>
+  <path d="M72 60H862" stroke="#444A42"/>
+  <text x="70" y="181" fill="#F1EEE7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="126" font-weight="650" letter-spacing="-6">CC<tspan fill="#DC9B7C">#</tspan>Skin</text>
+  <text x="76" y="237" fill="#B3B7B0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="23" letter-spacing="2">Fonts · Themes · Mods</text>
+  <g transform="translate(940 42)">
+    <circle cx="130" cy="92" r="74" fill="#B69B65" opacity="0.75"/>
+    <circle cx="82" cy="143" r="79" fill="#AAA7CB" opacity="0.8"/>
+    <path d="M17 191L206 2M40 213L229 24" stroke="#202321" stroke-width="2"/>
+    <circle cx="112" cy="109" r="103" fill="none" stroke="#F1EEE7" stroke-opacity="0.45"/>
+    <text x="18" y="156" fill="#F1EEE7" font-family="Georgia, 'Times New Roman', serif" font-size="122" letter-spacing="-10">Aa</text>
+  </g>
+</svg>

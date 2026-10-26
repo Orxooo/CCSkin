@@ -1,65 +1,48 @@
-<p align="center"><img src="gui/assets/ccskin-icon.png" alt="CC#Skin 图标" width="88"></p>
-<h1 align="center">CC#Skin</h1>
-<p align="center">Claude 桌面版的字体、外观与 Mods 管理工具。</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/header-dark.svg">
+  <img src="docs/assets/header-light.svg" alt="CC#Skin — Claude 的字体、配色与 Mods 工具" width="100%">
+</picture>
+
+<p align="center">调整 Claude 的字体与配色，管理 Claude Code 的 Mods。</p>
 <p align="center">
-<a href="https://github.com/Orxooo/CCSkin/releases/latest"><img src="https://img.shields.io/github/v/release/Orxooo/CCSkin" alt="最新版本"></a>
-<img src="https://img.shields.io/badge/macOS-26%2B-lightgrey" alt="macOS 26+">
-<a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--only-blue" alt="GPL-3.0-only"></a>
+  <a href="https://github.com/Orxooo/CCSkin/releases/download/v1.1.0/CCSkin-1.1.0-macOS-arm64.zip"><b>下载 macOS 版</b></a>　·　
+  <a href="README.en.md">English</a>　·　
+  <a href="CHANGELOG.md">更新记录</a>
 </p>
+<p align="center"><sub>macOS 26+ · Apple Silicon · 1.1.0</sub></p>
 
-**[下载 CC#Skin 1.2.1](https://github.com/Orxooo/CCSkin/releases/download/v1.2.1/CCSkin-1.2.1-macOS-arm64.zip)** · [English](README.en.md) · [更新记录](CHANGELOG.md) · [问题反馈](https://github.com/Orxooo/CCSkin/issues/new/choose)
-
-当前发行版本 **1.2.1（构建 8）**。适用于 **macOS 26+ 的 Apple Silicon Mac**；Mods 管理另需 Claude Code 官方 CLI **2.1.287+**。
-
-![CC#Skin 的 Mods 来源、筛选与排行](docs/assets/mods.png)
+<img src="docs/assets/fonts.png" alt="CC#Skin 字体与阅读排版设置" width="100%">
 
 ## 功能
 
-- **Mods 目录**：4 个社区来源、156 项随包目录条目，可手动刷新，也可添加自己的 GitHub 市场。
-- **筛选与排行**：组合搜索、来源、分类和安装状态；按仓库 Stars、仓库最近更新、名称或本机浏览次数排序。
-- **插件管理**：安装、启用、停用、更新与卸载，先选择、后应用，通过官方 Claude Code CLI 执行。
-- **字体与排版**：分别设置中英文、界面与代码字体，调整字号、行距、段落间距和阅读宽度。
-- **配色与主题**：浅色阅读底色、深色主题，以及样式组合保存和 JSON 导入导出。
-- **备份与还原**：外观修改前创建完整备份，支持独立测试副本和应用还原。
+- **字体与排版**：中英文、界面和代码分别设置，支持字号、行距和阅读宽度。
+- **配色与主题**：调整浅色背景和深色主题，保存组合，或导入他人的主题。
+- **Mods**：内置 4 个来源、156 项目录，支持搜索、筛选、排序、添加仓库与插件管理。
 
-目录条目可能来自同一仓库，Stars 与更新日期属于整个仓库。本机浏览只统计此 Mac 的详情打开次数，不上传记录。当前来源没有可核验的公开 Mod 下载量或全网浏览量，因此不提供这两种排行。来源与数据口径见 [Mods 使用说明](docs/MODS.md)。
+<details>
+<summary>查看 Mods 界面</summary>
+<br>
+<img src="docs/assets/mods.png" alt="Mods 来源、筛选与安装管理" width="100%">
+</details>
 
 ## 安装
 
-1. 下载上方安装包和发行页的 [`SHA256SUMS.txt`](https://github.com/Orxooo/CCSkin/releases/download/v1.2.1/SHA256SUMS.txt)。
-2. 核对摘要，解压 ZIP，将 `CC#Skin.app` 放入「应用程序」。
-3. 打开应用。使用字体和外观功能时，按「概览」完成 App 管理权限检测。
+1. 下载 ZIP，解压后将 `CC#Skin.app` 放入「应用程序」。
+2. 打开应用，在「概览」检测 App 管理权限。
+3. 选择目标 Claude，调整样式后，退出 Claude 再应用。
 
-```sh
-shasum -a 256 CCSkin-1.2.1-macOS-arm64.zip
-```
-
-客户端内置运行所需组件，无需 Python 或 Xcode。发行包使用 Apple 开发证书签名，未经 Apple 公证；首次打开说明见 [使用指南](docs/USAGE.md#安装与校验)。
-
-从 claudefont、ClaudeFont 或 CcSkin 升级时，退出旧版后替换应用。原有 Bundle ID、设置、主题和备份目录保持兼容。
+安装包已签名，未经 Apple 公证。首次打开、SHA-256 校验和升级说明见[使用指南](docs/USAGE.md)。
 
 ## 使用
 
-**管理 Mods**：打开「Mods」，搜索和筛选目录，查看详情与源码，将所需操作加入待应用列表，再点击「应用所选更改」。也可以在「仓库」添加 GitHub 市场。浏览不会自动添加市场或安装插件；完成后，在目标 Code 会话运行 `/reload-plugins` 或重新打开会话，并确认实际效果。
+**外观**：修改前自动备份；撤销时退出 Claude，在「更多操作」选择「还原应用」。Claude 更新后需重新检查兼容性。
 
-**调整外观**：在「概览」选择目标，在「字体」「代码」「背景」调整，或从「主题」载入组合。彻底退出所选 Claude，再点击「应用设置」。重新打开 Claude 检查效果；撤销时退出 Claude，并在「更多操作」选择「还原应用」。
+**Mods**：需要 Claude Code CLI 2.1.287+。选好操作后统一应用，再在 Code 会话运行 `/reload-plugins` 或重开会话。第三方 Mods 会在本机执行代码，安装前请查看源码。[来源与排行说明](docs/MODS.md)
 
-Mods 单独应用不修改或重新签名 Claude.app。外观修改沿用完整备份、补丁和签名流程；首次使用建议在独立测试副本确认。Mods 使用当前用户的 Claude Code 配置，不随外观页的正式／测试应用目标切换。
+## 文档
 
-## 验证与兼容性
+[使用指南](docs/USAGE.md) · [Mods](docs/MODS.md) · [构建与 CLI](docs/DEVELOPMENT.md) · [验证记录](docs/VERIFICATION.md) · [参与开发](CONTRIBUTING.md)
 
-当前版本的检查、签名、界面及发行包验证范围见 [验证记录](docs/VERIFICATION.md)。第三方 Mods 在 Claude Desktop 中的实际效果取决于目标会话，尚未逐项验收。外观引擎的历史实际运行记录涵盖 Claude 2.19675.0；Claude 更新后应重新检查兼容性。
+---
 
-社区 Mods 会在本机执行代码。目录收录和仓库热度不代表每个第三方插件已经过安全审查。
-
-## 数据与开发
-
-设置和主题位于 `~/.config/claudefont/`，应用备份与日志位于 `~/.local/share/claudefont/`。更新检查、目录刷新和热度刷新访问 GitHub；本机详情浏览次数留在本机。
-
-客户端采用 Swift / SwiftUI，内置 Swift 外观引擎。开发需要 Xcode 26+ 和有效的 Apple 签名身份。
-
-[使用指南](docs/USAGE.md) · [Mods 说明](docs/MODS.md) · [构建与 CLI](docs/DEVELOPMENT.md) · [代码结构](docs/ARCHITECTURE.md) · [贡献指南](CONTRIBUTING.md)
-
-## 许可
-
-Copyright © 2026 Orxooo。项目采用 [GPL-3.0-only](LICENSE)，与 Anthropic 无隶属关系，不分发 Claude 应用代码或字体文件。社区元数据的 CC0／MIT 声明随包保留；第三方插件遵循各自许可证。详见 [NOTICE](NOTICE)。
+[GPL-3.0-only](LICENSE) · © 2026 Orxooo · 与 Anthropic 无隶属关系。[项目声明](NOTICE)

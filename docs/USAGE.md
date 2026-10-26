@@ -7,12 +7,12 @@
 在[发行页](https://github.com/Orxooo/CCSkin/releases/latest)下载 macOS ZIP 与 `SHA256SUMS.txt`。将 ZIP 的 SHA-256 摘要与清单中的同名条目核对：
 
 ```sh
-shasum -a 256 CCSkin-1.2.1-macOS-arm64.zip
+shasum -a 256 CCSkin-1.1.0-macOS-arm64.zip
 ```
 
-以上命令对应 V1.2.1；其他版本请使用发行页列出的文件名。解压后，将应用移入「应用程序」文件夹。
+以上命令对应 V1.1.0；其他版本请使用发行页列出的文件名。解压后，将应用移入「应用程序」文件夹。
 
-V1.2.1（构建 8）使用 Apple 开发证书签名，未经 Apple 公证。若 macOS 拦截首次打开，确认来源和摘要后，在「系统设置 → 隐私与安全性」选择「仍要打开」。
+V1.1.0使用 Apple 开发证书签名，未经 Apple 公证。若 macOS 拦截首次打开，确认来源和摘要后，在「系统设置 → 隐私与安全性」选择「仍要打开」。
 
 当前发行包和源码构建产物均为 `CC#Skin.app`。预览使用示例内容。Mods 用法见 [Mods 说明](MODS.md)。
 
@@ -63,12 +63,12 @@ Claude 更新后，先重新检查兼容性，再应用已保存的设置。CC#S
 Download the macOS ZIP and `SHA256SUMS.txt` from [Releases](https://github.com/Orxooo/CCSkin/releases/latest). Compare the ZIP's SHA-256 digest with the entry for the same filename:
 
 ```sh
-shasum -a 256 CCSkin-1.2.1-macOS-arm64.zip
+shasum -a 256 CCSkin-1.1.0-macOS-arm64.zip
 ```
 
-This command is for V1.2.1; use the filename listed on the release page for other versions. Extract the ZIP and move the app to Applications.
+This command is for V1.1.0; use the filename listed on the release page for other versions. Extract the ZIP and move the app to Applications.
 
-V1.2.1 (build 8) is signed with an Apple development certificate and is not notarized. If macOS blocks the first launch, verify the source and checksum, then choose **Open Anyway** in **System Settings → Privacy & Security**.
+V1.1.0 is signed with an Apple development certificate and is not notarized. If macOS blocks the first launch, verify the source and checksum, then choose **Open Anyway** in **System Settings → Privacy & Security**.
 
 Current packages and source builds both produce `CC#Skin.app`. Previews use sample content. See the [Mods guide](MODS.md) for plugin management.
 
