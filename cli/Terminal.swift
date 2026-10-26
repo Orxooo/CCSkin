@@ -6,6 +6,55 @@ import Foundation
 // It changes the options before xterm measures its canvas and character grid.
 enum TerminalResource {
     static let marker = "/* claudefont-terminal-1 */"
+    static let externalMarker = "/* claudefont-terminal-props-1 */"
+    struct ExternalResource {
+        let path: String
+        let text: String
+        let props: [NSTextCheckingResult]
+    }
+    // Current Claude passes measured font options to ShellTerminal in ion-dist.
+    // Patch both the loading placeholder and live props, leaving zoom calculation
+    // and React hook/memoization logic intact.
+    static func externalResources(_ resources: URL) throws -> [ExternalResource] {
+        let relative = "ion-dist/assets/v1"
+        let directory = resources.appendingPathComponent(relative)
+        guard exists(directory) else { return [] }
+        try noSymlink(directory)
+        let identifier = #"[A-Za-z_$][A-Za-z0-9_$]*"#
+        let pattern = "fontFamily:(" + identifier + "),fontSize:(" + identifier + #"(?:\(\))?)(?=[,}])"#
+        let regex = try NSRegularExpression(pattern:pattern)
+        return try FileManager.default.contentsOfDirectory(at:directory,includingPropertiesForKeys:nil)
+            .filter { $0.pathExtension == "js" }.sorted { $0.path < $1.path }.compactMap { file in
+                try noSymlink(file)
+                let attributes = try FileManager.default.attributesOfItem(atPath:file.path)
+                guard attributes[.type] as? FileAttributeType == .typeRegular,
+                      (attributes[.size] as? NSNumber)?.intValue ?? 0 <= 30_000_000 else { return nil }
+                let text = try String(contentsOf:file,encoding:.utf8)
+                guard text.contains("terminal-pane-placeholder"), text.contains("ShellTerminalChunk") else { return nil }
+                let props = regex.matches(in:text,range:NSRange(text.startIndex...,in:text))
+                guard text.contains(externalMarker) || props.count == 2 else { return nil }
+                return ExternalResource(path:relative + "/" + file.lastPathComponent,text:text,props:props)
+            }
+    }
+    static func externalReplacements(_ resources: URL, settings: [String:Any]) throws -> [String:Data] {
+        let found = try externalResources(resources)
+        guard !found.isEmpty else { return [:] }
+        try require(found.count == 1 && !found[0].text.contains(externalMarker),
+                    "External terminal resource structure is unknown or ambiguous; restore terminal defaults")
+        let resource = found[0], changed = NSMutableString(string:resource.text)
+        let family = settings["code_font_terminal"] as? String ?? ""
+        let prefix = family.isEmpty ? "" : "\"" + family + "\","
+        let encoded = try JSONSerialization.data(withJSONObject:[prefix])
+        let literal = String(String(decoding:encoded,as:UTF8.self).dropFirst().dropLast())
+        let scale = StyleSchema.cssNumber(StyleSchema.number(settings,"code_scale_terminal")/100)
+        for match in resource.props.reversed() {
+            let original = resource.text as NSString
+            let font = original.substring(with:match.range(at:1))
+            let size = original.substring(with:match.range(at:2))
+            changed.replaceCharacters(in:match.range,with:"fontFamily:" + (family.isEmpty ? font : "(" + literal + "+" + font + ")") + ",fontSize:(" + size + ")*" + scale)
+        }
+        return [resource.path:Data((externalMarker + "\n" + (changed as String)).utf8)]
+    }
     static func optionsRange(_ text:String) -> Range<String.Index>? {
         guard text.contains("xterm"), !text.contains(marker) else { return nil }
         let regex = try! NSRegularExpression(pattern:#"new\s+[A-Za-z_$][A-Za-z0-9_$]*\s*\(\s*\{"#)

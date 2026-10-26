@@ -125,6 +125,52 @@ int main(int argc,char **argv) {
     check('valid signed fixture and directory link accepted',initial['state']=='clean' and initial['canApply'])
     check('CLI version identity',subprocess.check_output([str(BINARY),'--version'],text=True).strip()=='claudefont 1.0.0')
     run('doctor','--json');check('access probe leaves original bundle intact',snapshot(app)==original)
+    # Claude 3.x ships terminal props outside ASAR. Exercise the actual staged
+    # install/restore path with both the loading placeholder and live terminal.
+    ion_app=work/'ExternalTerminal.app';shutil.copytree(app,ion_app,symlinks=True)
+    ion_resources=ion_app/'Contents/Resources';ion_dir=ion_resources/'ion-dist/assets/v1';ion_dir.mkdir(parents=True)
+    ion_file=ion_dir/'terminal-vendor.js'
+    ion_source=b'''let zoom=16;function size(){return Math.round(14*zoom/16)}
+function family(){return "Vendor Mono, monospace"}
+function render(){const n=family(),o=size(),y=family();return {
+placeholder:{"data-testid":"terminal-pane-placeholder",fontFamily:n,fontSize:o},
+live:{componentName:"ShellTerminalChunk",fontFamily:y,fontSize:size()}}}
+'''
+    ion_file.write_bytes(ion_source)
+    ion_files={k:v for k,v in files.items() if not k.endswith('terminal.js')}
+    ion_archive=ion_resources/'app.asar';ion_archive.write_bytes(pack(ion_files,{'native.node':external_record}))
+    ion_info=dict(info);ion_info['ElectronAsarIntegrity']={'Resources/app.asar':{'algorithm':'SHA256','hash':sha(unpack(ion_archive)[0])}}
+    (ion_app/'Contents/Info.plist').write_bytes(plistlib.dumps(ion_info))
+    def ion_sign():subprocess.run(['codesign','--force','--sign','-',str(ion_app)],check=True,stderr=subprocess.DEVNULL)
+    ion_sign();ion_original=snapshot(ion_app)
+    ion_config=work/'ion-config.json';ion_config.write_text(json.dumps({'font':'Songti SC','code_scale_terminal':110}))
+    ion_env={'CLAUDEFONT_CONFIG':str(ion_config),'CLAUDEFONT_DATA_DIR':str(work/'ion-state')}
+    def ion_run(command,*args,**kwargs):return run(command,'--app',str(ion_app),*args,extra=dict(ion_env,**kwargs.pop('extra',{})),**kwargs)
+    def ion_status():return json.loads(ion_run('status','--json').stdout)
+    def ion_options():
+        script=work/'ion-props.js';script.write_bytes(ion_file.read_bytes()+b'\nconsole.log(JSON.stringify([render(),(zoom=24,render())]));')
+        return json.loads(subprocess.check_output(['node',str(script)],text=True))
+    check('external terminal supports requested scale before writing',ion_status()['canApply'] and ion_status()['compatibility']['regions']['terminal']=='matched')
+    ion_run('install','-y');base,zoomed=ion_options()
+    check('external live and loading terminal scale to 110 percent',all(abs(base[k]['fontSize']-15.4)<1e-6 for k in ['live','placeholder']))
+    check('external terminal keeps vendor font and zoom',all(base[k]['fontFamily']=='Vendor Mono, monospace' and abs(zoomed[k]['fontSize']-23.1)<1e-6 for k in ['live','placeholder']))
+    check('external terminal install status agrees',ion_status()['settingsMatch'] and ion_status()['compatibility']['installedRegions']['terminal'])
+    ion_run('install','-y');check('external scale does not compound on reapply',abs(ion_options()[0]['live']['fontSize']-15.4)<1e-6)
+    ion_config.write_text(json.dumps({'font':'Songti SC','code_scale_terminal':125,'code_font_terminal':'Menlo'}))
+    ion_run('install','-y');base,_=ion_options()
+    check('external custom font retains vendor fallback',all('Menlo' in base[k]['fontFamily'] and 'Vendor Mono' in base[k]['fontFamily'] and base[k]['fontSize']==17.5 for k in ['live','placeholder']))
+    ion_config.write_text(json.dumps({'font':'Songti SC'}));ion_run('install','-y')
+    check('default terminal settings restore external bytes',ion_file.read_bytes()==ion_source and not ion_status()['compatibility']['installedRegions']['terminal'])
+    ion_run('uninstall','-y');check('external terminal full original restored',snapshot(ion_app)==ion_original)
+    ion_config.write_text(json.dumps({'font':'Songti SC','code_scale_terminal':110}))
+    ion_run('install','-y',code=1,extra={'CLAUDEFONT_FIXTURE_FAIL_PATCH':'1'})
+    check('external terminal startup failure rolls back all resources',snapshot(ion_app)==ion_original)
+    duplicate=ion_dir/'duplicate.js';duplicate.write_bytes(ion_source);ion_sign();ambiguous=snapshot(ion_app)
+    ion_run('install','-y',code=1)
+    check('ambiguous external terminal refuses before mutation',not ion_status()['canApply'] and snapshot(ion_app)==ambiguous)
+    duplicate.unlink();ion_file.unlink();ion_file.symlink_to(work/'outside-terminal.js');(work/'outside-terminal.js').write_bytes(ion_source)
+    ion_run('install','-y',code=1)
+    check('external terminal resource symlink refuses mutation',(work/'outside-terminal.js').read_bytes()==ion_source)
     run('install','-y');state=status();raw,patched=unpack(archive)
     check('renderer appended beyond source-map comment',patched['.vite/build/mainView.js'].startswith(files['.vite/build/mainView.js']+b'\n'))
     check('main and other payloads untouched',all(patched[k]==v for k,v in files.items() if k!='.vite/build/mainView.js'))

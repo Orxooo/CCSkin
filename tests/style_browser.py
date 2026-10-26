@@ -3,23 +3,30 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Compile independent style checks and run a synthetic DOM browser regression."""
 import json
+from contextlib import nullcontext
 import os
 from pathlib import Path
 import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-with tempfile.TemporaryDirectory(prefix='claudefont-style-') as directory:
+with (nullcontext(os.environ['CLAUDEFONT_STYLE_OUTPUT']) if os.environ.get('CLAUDEFONT_STYLE_OUTPUT') else tempfile.TemporaryDirectory(prefix='claudefont-style-')) as directory:
     target = Path(directory)
+    target.mkdir(parents=True, exist_ok=True)
     binary = target / 'style-checks'
     subprocess.run(['swiftc', '-swift-version', '5', str(ROOT/'shared/Appearance.swift'),
                     str(ROOT/'shared/StyleCSS.swift'), str(ROOT/'tests/style_checks.swift'), '-o', str(binary)], check=True)
     subprocess.run([str(binary), str(target)], check=True)
     (target/'index.html').write_text('''<!doctype html><meta charset="utf-8"><title>claudefont independent renderer checks</title>
-<style>body{font-size:16px;color:#252B32}.font-claude-response{font-size:18px}pre{font-size:14px}code{font-size:inherit}</style>
-<main><div class="font-claude-response" id="reply">Reading sample 中文<p>Paragraph</p></div>
+<style>body{font-size:16px;color:#252B32}.font-claude-response{font-size:18px}pre{font-size:14px}code{font-size:inherit}.cds-root{--cds-page-bg:#faf9f5;--cds-surface-1:#f8f8f6;--cds-surface-3:white;--cds-surface-panel:white}
+.dframe-root{--df-sidebar-bg:#fafafa}.dframe-sidebar{--df-web-sidebar-bg:#fafafa;background:var(--df-web-sidebar-bg,var(--df-sidebar-bg))}
+#composer-surround{background:var(--cds-page-bg);box-shadow:0 0 0 32px var(--cds-page-bg)}
+#scroll-fade{background:linear-gradient(transparent,var(--epitaxy-transcript-surface,var(--cds-page-bg)))}
+#composer-card{background:var(--cds-surface-3)}
+</style>
+<main><section data-mode="dark"><div class="cds-root" id="nested-dark" style="--cds-page-bg:#202020;--cds-surface-panel:#242424;background:var(--cds-page-bg)"><div data-plugin-drawn id="nested-plugin" style="background:var(--cds-surface-panel)">Explicit dark panel</div></div></section><div class="cds-root" id="native-code"><div class="dframe-root"><aside class="dframe-sidebar" id="sidebar">Sidebar</aside></div><div id="mod-host" data-plugin-drawn></div><div id="scroll-fade">Fade</div><div id="composer-surround"><div id="composer-card">Input card</div></div></div><div class="font-claude-response" id="reply">Reading sample 中文<p>Paragraph</p></div>
 <pre id="block"><code>const answer = 42;</code></pre><div class="font-claude-response" id="inherited" style="font-size:18px"><pre style="font-size:inherit" id="initial-inherited">initial</pre></div><div id="late-shadow"></div><div id="shadow"></div><output id="result">running</output></main>
-<script>const shadow=document.querySelector('#shadow').attachShadow({mode:'open'});shadow.innerHTML='<pre id="inside" style="font-size:14px"><code>shadow example</code></pre>';</script>
+<script>const modShadow=document.querySelector('#mod-host').attachShadow({mode:'open'});modShadow.innerHTML='<div data-engine-site><div id=mod-panel style="background-color:var(--cds-surface-panel);padding:16px"><div id=mod-header style="background:var(--cds-surface-1)">bash</div><pre><code><span style="color:rgb(0,128,0)">echo test</span></code></pre></div></div>';const shadow=document.querySelector('#shadow').attachShadow({mode:'open'});shadow.innerHTML='<pre id="inside" style="font-size:14px"><code>shadow example</code></pre>';</script>
 <script src="renderer.js"></script>
 <script>
 window.results=[];
@@ -38,10 +45,24 @@ window.done=(async()=>{
  check('reading width',Math.abs(document.querySelector('#reply').getBoundingClientRect().width-680)<1);
  check('reading line height',Math.abs(parseFloat(getComputedStyle(document.querySelector('#reply')).lineHeight)-35.64)<0.2);
  check('light background',getComputedStyle(document.body).backgroundColor==='rgb(240, 238, 230)');
+ check('composer surround matches selected page',getComputedStyle(document.querySelector('#composer-surround')).backgroundColor==='rgb(240, 238, 230)');
+ check('composer shadow matches page',getComputedStyle(document.querySelector('#composer-surround')).boxShadow.includes('rgb(240, 238, 230)'));
+ check('scroll fade matches page',getComputedStyle(document.querySelector('#scroll-fade')).backgroundImage.includes('rgb(240, 238, 230)'));
+ check('input card keeps its raised surface',getComputedStyle(document.querySelector('#composer-card')).backgroundColor==='rgb(255, 255, 255)');
+ check('light background preserves nested explicit dark scope',getComputedStyle(document.querySelector('#nested-dark')).backgroundColor==='rgb(32, 32, 32)'&&getComputedStyle(document.querySelector('#nested-plugin')).backgroundColor==='rgb(36, 36, 36)');
+ check('desktop sidebar matches selected page',getComputedStyle(document.querySelector('#sidebar')).backgroundColor==='rgb(240, 238, 230)');
+ check('plugin code panel matches page through shadow DOM',getComputedStyle(modShadow.querySelector('#mod-panel')).backgroundColor==='rgb(240, 238, 230)');
+ check('plugin code header matches page',getComputedStyle(modShadow.querySelector('#mod-header')).backgroundColor==='rgb(240, 238, 230)');
+ check('plugin code retains syntax colors',getComputedStyle(modShadow.querySelector('code span')).color==='rgb(0, 128, 0)');
  check('shadow stylesheet',Boolean(shadow.querySelector('style[data-claudefont-sheet]')));
  check('shadow region size',Math.abs(parseFloat(getComputedStyle(shadow.querySelector('#inside')).fontSize)-17.5)<0.1);
  document.documentElement.classList.add('dark');await frame();
  check('dark palette',getComputedStyle(document.body).backgroundColor==='rgb(37, 33, 31)');
+ check('dark composer matches page',getComputedStyle(document.querySelector('#composer-surround')).backgroundColor==='rgb(37, 33, 31)');
+ check('dark sidebar matches page',getComputedStyle(document.querySelector('#sidebar')).backgroundColor==='rgb(37, 33, 31)');
+ check('dark plugin panel matches page',getComputedStyle(modShadow.querySelector('#mod-panel')).backgroundColor==='rgb(37, 33, 31)');
+ document.documentElement.classList.remove('dark');document.documentElement.dataset.mode='dark';await frame();
+ check('native dark mode keeps matching page surfaces',getComputedStyle(document.body).backgroundColor==='rgb(37, 33, 31)'&&getComputedStyle(document.querySelector('#sidebar')).backgroundColor==='rgb(37, 33, 31)'&&getComputedStyle(modShadow.querySelector('#mod-panel')).backgroundColor==='rgb(37, 33, 31)');
  const added=document.createElement('pre');added.textContent='dynamic code';added.style.fontSize='14px';document.querySelector('main').append(added);await frame();
  const inherited=document.createElement('pre');inherited.style.fontSize='inherit';inherited.textContent='later inherited';document.querySelector('#inherited').append(inherited);await frame();
  check('dynamic inherited scale matches initial',Math.abs(parseFloat(getComputedStyle(inherited).fontSize)-parseFloat(getComputedStyle(document.querySelector('#initial-inherited')).fontSize))<0.1);
@@ -55,6 +76,9 @@ window.done=(async()=>{
  return results;
 })();
 </script>''')
+    if os.environ.get('CLAUDEFONT_STYLE_OUTPUT'):
+        print('Prepared browser checks: '+str(target/'index.html'))
+        raise SystemExit(0)
     env = dict(os.environ, AGENT_BROWSER_SESSION='claudefont-independent-style')
     cli = ['npx', '--yes', 'agent-browser']
     try:

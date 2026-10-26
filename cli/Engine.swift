@@ -371,7 +371,8 @@ final class FontEngine {
         let baseTarget = ApplicationTarget(url:base), archive = try Archive(url:baseTarget.archive)
         let originalScript = try archive.read(Self.preload)
         var replacements = [Self.preload:originalScript + Data(RendererScript.make(css:css).utf8)]
-        if terminalRequested { replacements.merge(try TerminalResource.replacements(archive,settings:cfg,excluding:try archive.mainEntry())) { _, new in new } }
+        let external = terminalRequested ? try TerminalResource.externalReplacements(baseTarget.resources,settings:cfg) : [:]
+        if terminalRequested && external.isEmpty { replacements.merge(try TerminalResource.replacements(archive,settings:cfg,excluding:try archive.mainEntry())) { _, new in new } }
         let packed = try archive.replacing(replacements)
         let newArchive = try Archive(data:packed,unpacked:archive.unpacked)
         let backup = try createBackup(info:current.info,pristine:!own && previous == nil)
@@ -381,6 +382,11 @@ final class FontEngine {
         try copyBundle(base,staged)
         let stagedTarget = ApplicationTarget(url:staged)
         try packed.write(to:stagedTarget.archive,options:.atomic)
+        for (path,data) in external {
+            let destination = stagedTarget.resources.appendingPathComponent(path)
+            try noSymlink(destination)
+            try data.write(to:destination,options:.atomic)
+        }
         var info = try stagedTarget.metadata()
         var table = info["ElectronAsarIntegrity"] as? [String:Any] ?? [:]
         var entry = table["Resources/app.asar"] as? [String:Any] ?? [:]
@@ -429,10 +435,12 @@ final class FontEngine {
             let desiredHash = digest(try jsonData(StyleSchema.portable(cfg)))
             let matches = own && installed?.styleHash == desiredHash && installed?.archiveHash == digest(state.archive.rawHeader)
             let terminal = !(cfg["code_font_terminal"] as? String ?? "").isEmpty || StyleSchema.number(cfg,"code_scale_terminal") != 100
-            let adaptedTerminal = try state.archive.entries.keys.filter { $0.hasPrefix(".vite/renderer/") && $0.hasSuffix(".js") && state.archive.entries[$0]?["link"] == nil }.contains { name in
+            let external = try TerminalResource.externalResources(target.resources)
+            let adaptedExternal = external.count == 1 && external[0].text.contains(TerminalResource.externalMarker)
+            let adaptedTerminal = try adaptedExternal || state.archive.entries.keys.filter { $0.hasPrefix(".vite/renderer/") && $0.hasSuffix(".js") && state.archive.entries[$0]?["link"] == nil }.contains { name in
                 String(decoding:try state.archive.read(name),as:UTF8.self).contains(TerminalResource.marker)
             }
-            let terminalAvailable = (try? TerminalResource.candidates(supportArchive,excluding:try supportArchive.mainEntry()).count) == 1 || (own && adaptedTerminal)
+            let terminalAvailable = external.count == 1 || (external.isEmpty && ((try? TerminalResource.candidates(supportArchive,excluding:try supportArchive.mainEntry()).count) == 1 || (own && adaptedTerminal)))
             let canApply = (!foreignPatch(source) || migrated) && (!terminal || terminalAvailable) && (!own || saved.contains(where:{$0.id == installed?.backupID && $0.pristine && $0.version == output["version"] as? String})) && output["signOK"] as? Bool == true && !exists(journalURL)
             output["state"] = migrated ? "previous" : foreignPatch(source) ? "unsupported" : own ? (matches ? "applied" : "changed") : "clean"
             output["previousReady"] = migrated

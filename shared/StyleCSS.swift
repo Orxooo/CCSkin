@@ -90,12 +90,27 @@ enum StyleCSS {
             if !family.isEmpty { declarations += "font-family:\(quoted(family)),monospace !important;" }
             rules.append("[data-claudefont-zone=\(zone)]{\(declarations)}")
         }
+        func pageSurfaces(_ root: String, color: String, light: Bool = false) {
+            let scope = light ? ":not([data-mode=dark]):not([data-mode=dark] *)" : ""
+            // Code's composer surround, masking shadows and scroll fades consume
+            // page tokens rather than body background. Keep raised surfaces intact.
+            rules.append("\(root),\(root) .cds-root\(scope){--cds-page-bg:\(color) !important;--epitaxy-transcript-surface:\(color) !important;}")
+            // Desktop and web frame variants redeclare their sidebar tokens locally.
+            rules.append("\(root) .dframe-root\(scope),\(root) .dframe-sidebar\(scope),\(root) .dframe-sidebar-body\(scope){--df-sidebar-bg:\(color) !important;--df-web-sidebar-bg:\(color) !important;--df-web-sidebar-bg-image:none !important;}")
+            // Mods such as paneline draw code panels in an open shadow root. Its
+            // semantic panel token inherits through the plugin host; syntax colors
+            // and the native code/input surfaces retain their own styles.
+            rules.append("\(root) [data-plugin-drawn]\(scope){--cds-surface-panel:\(color) !important;--cds-surface-1:\(color) !important;}")
+        }
         if !string("bg_color").isEmpty {
-            rules.append(":root:not(.dark):not([data-theme=dark]) body,:root:not(.dark):not([data-theme=dark]) main,:root:not(.dark):not([data-theme=dark]) .bg-bg-000{background-color:\(string("bg_color")) !important;}")
+            let light = ":root:not(.dark):not([data-theme=dark]):not([data-mode=dark])"
+            rules.append("\(light) body,\(light) main,\(light) .bg-bg-000{background-color:\(string("bg_color")) !important;}")
+            pageSurfaces(light,color:string("bg_color"),light:true)
         }
         if let palette = StyleSchema.palette(config) {
-            let selectors = [":root.dark", ":root[data-theme=dark]", ":host-context(.dark)", ":host-context([data-theme=dark])"]
+            let selectors = [":root.dark", ":root[data-theme=dark]", ":root[data-mode=dark]", ":host-context(.dark)", ":host-context([data-theme=dark])", ":host-context([data-mode=dark])"]
             for root in selectors {
+                pageSurfaces(root,color:palette["bg"]!)
                 rules.append("\(root) body,\(root) main,\(root) .bg-bg-000{background-color:\(palette["bg"]!) !important;color:\(palette["text"]!) !important;}")
                 rules.append("\(root) a{color:\(palette["link"]!) !important;}")
                 rules.append("\(root) pre,\(root) pre code,\(root) .cm-editor{background-color:\(palette["code"]!) !important;color:\(palette["text"]!) !important;}")
