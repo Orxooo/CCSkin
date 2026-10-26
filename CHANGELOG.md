@@ -1,14 +1,24 @@
 # Changelog
 
-## CC#Skin 1.2.0 · build 6 — local, unpublished
+## CC#Skin 1.2.0 · build 7 — 2026-10-26
 
-- Official product name CC#Skin and the user's new icon artwork.
+- Official product name CC#Skin and new icon artwork.
 - Four metadata sources, 156 marketplace entries, source/category/install-state filters and composable search.
 - Repository Stars, repository push date, alphabetical and local detail-view sorting; clear missing-data and metric scope labels.
 - Dated offline metric snapshots, independent partial catalog refresh and local-only browsing history.
 - Full-width filter grid with equal native selection controls, shared label widths and consistent spacing.
 - Fresh marketplace identity checks before catalog installs prevent stale registry collisions.
 - 35 core, 21 catalog, 13 discovery and 16 store checks; verification scope is recorded in docs/VERIFICATION.md.
+
+## Earlier ClaudeFont rename work (previously unreleased)
+
+- 应用名称统一为 **ClaudeFont**：窗口、侧栏、关于页面、权限说明、主题导出文件名及构建产物使用同一名称。
+- 重整中英文 README，核对功能、安装、校验、测试副本、兼容性和还原说明，并同步开发与贡献文档。
+- Renamed the app to **ClaudeFont** across windows, sidebar, About, permission text, theme exports and build output.
+- Reorganized both READMEs and checked feature, installation, checksum, test-copy, compatibility and restoration copy; updated development and contribution docs.
+
+现有 Bundle ID、CLI 命令、配置及备份目录保持兼容。此改名尚未发布；历史发行包名称以发行页为准。
+The existing bundle ID, CLI command and data directories remain compatible. The rename is unreleased; historical filenames follow their release pages.
 
 ## V1.0.0 · build 4 — 2026-10-03
 

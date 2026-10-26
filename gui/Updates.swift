@@ -4,9 +4,9 @@ import SwiftUI
 import Foundation
 
 enum Updater {
-    static var version: String { Bundle.main.object(forInfoDictionaryKey:"CFBundleShortVersionString") as? String ?? "1.1.0" }
-    static let releases = URL(string: "https://github.com/Orxooo/claudefont/releases")!
-    static let endpoint = URL(string: "https://api.github.com/repos/Orxooo/claudefont/releases/latest")!
+    static var version: String { Bundle.main.object(forInfoDictionaryKey:"CFBundleShortVersionString") as? String ?? "1.2.0" }
+    static let releases = URL(string: "https://github.com/Orxooo/ClaudeFont/releases")!
+    static let endpoint = URL(string: "https://api.github.com/repos/Orxooo/ClaudeFont/releases/latest")!
     static func isNewer(_ tag: String) -> Bool {
         let normalized = tag.hasPrefix("v") || tag.hasPrefix("V") ? String(tag.dropFirst()) : tag
         let parts = normalized.split(separator: ".").compactMap { Int($0) }
@@ -43,7 +43,7 @@ final class UpdateWatcher: ObservableObject {
                 guard error == nil, let response = response as? HTTPURLResponse, response.statusCode == 200,
                       let data, let release = try? JSONDecoder().decode(Release.self, from: data),
                       let page = URL(string: release.html_url), page.scheme == "https", page.host == "github.com",
-                      page.path.hasPrefix("/Orxooo/claudefont/releases/") else {
+                      page.path.lowercased().hasPrefix("/orxooo/claudefont/releases/") else {
                     self.message = Copy.shared.effective == .zh ? "检查失败，请稍后重试。" : "Could not check. Try again later."; return
                 }
                 UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "lastReleaseCheck")
