@@ -79,6 +79,8 @@ private struct StatusResponse: Decodable {
     let canApply: Bool
     let settingsMatch: Bool
     let permissionDenied: Bool
+    // Present only when doctor actually reaches the write-access probe.
+    let permissionGranted: Bool?
     let compatibility: CompatibilityStatus?
     let signOK: Bool?
     let integrityOK: Bool?
@@ -256,7 +258,8 @@ final class Model: ObservableObject {
                 state.backups = Array(repeating: "backup", count: min(10_000, max(0, response.backups ?? 0)))
                 state.compatibility = response.compatibility; state.checkedAt = Date().formatted(date: .omitted, time: .shortened)
                 self.statuses[choice] = state
-                if choice == self.target { self.appMgmtDenied = response.permissionDenied }
+                // A read-only status refresh cannot revoke a doctor's denial.
+                if choice == self.target && response.permissionDenied { self.appMgmtDenied = true }
                 if state.settingsMatch && state.patched { self.appliedSnapshots[choice] = checkedSettings }
                 if !state.patched { self.appliedSnapshots.removeValue(forKey: choice) }
             } catch {
@@ -321,7 +324,7 @@ final class Model: ObservableObject {
             self.appendLog(String(decoding: result.output, as: UTF8.self) + String(decoding: result.error, as: UTF8.self) + "\n")
             let response = try? JSONDecoder().decode(StatusResponse.self, from: result.output)
             self.appMgmtDenied = response?.permissionDenied ?? false
-            completion?(result.status == 0 && response?.permissionDenied == false && response?.canApply == true)
+            completion?(response?.permissionGranted == true)
             self.refresh(choice)
         }
     }

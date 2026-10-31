@@ -2,6 +2,14 @@
 
 [English](CHANGELOG.en.md) · [下载最新版](https://github.com/Orxooo/CCSkin/releases/latest)
 
+## [1.2.0](https://github.com/Orxooo/CCSkin/releases/tag/v1.2.0) · 2026-10-31
+
+- 适配 Claude 4.4212.0 的 `ion-dist.asar` 终端资源，恢复终端字体与字号修改。
+- 支持 Electron 41+ 启用的框架完整性摘要，同步归档哈希与摘要，保持完整性校验开启。
+- 使用同一 Apple 签名身份签署受影响的 Electron 依赖与 Helper，保留 Helper 权限和库验证设置；这类目标需要本机可用的签名证书。
+- 权限检测独立于样式兼容性判断，修复“未能确认权限”的误报，补充阻止应用的具体原因和终端默认值恢复入口。
+- 保留完整备份、启动失败自动回滚和原厂签名还原。独立 Claude 副本验证了终端 105% 设置、启动与完整还原；真实会话中的显示效果仍需确认。
+
 ## [1.1.0](https://github.com/Orxooo/CCSkin/releases/tag/v1.1.0) · 2026-10-26
 
 - 应用更名为 CC#Skin，换用新图标。

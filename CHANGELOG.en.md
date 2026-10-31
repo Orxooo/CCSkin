@@ -2,6 +2,14 @@
 
 [简体中文](CHANGELOG.md) · [Latest release](https://github.com/Orxooo/CCSkin/releases/latest)
 
+## [1.2.0](https://github.com/Orxooo/CCSkin/releases/tag/v1.2.0) · 2026-10-31
+
+- Support terminal fonts and scaling in Claude 4.4212.0's `ion-dist.asar` resources.
+- Synchronize archive hashes and the enabled Electron 41+ framework integrity digest without disabling integrity validation.
+- Sign affected Electron dependencies and Helpers with a consistent Apple certificate, preserving Helper entitlements and library validation. These targets require a local signing certificate.
+- Separate write-access probing from style compatibility, fix misleading permission failures, and explain blocked application with a terminal-default reset action.
+- Preserve complete backups, failed-startup rollback and exact vendor-signature restoration. Terminal scaling at 105%, startup and full restoration were verified on an independent Claude copy; actual session appearance still needs confirmation.
+
 ## [1.1.0](https://github.com/Orxooo/CCSkin/releases/tag/v1.1.0) · 2026-10-26
 
 - Rename the app to CC#Skin and replace its icon.

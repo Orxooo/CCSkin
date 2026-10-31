@@ -5,7 +5,7 @@ import Darwin
 
 let arguments = Array(CommandLine.arguments.dropFirst())
 let usage = """
-claudefont 1.0.0 — GPL-3.0-only
+claudefont 1.2.0 — GPL-3.0-only
 Usage: claudefont <status|doctor|install|uninstall|backups> [--app PATH] [--json] [-y]
        claudefont migrate --app TARGET --backup PRISTINE.app --settings CONFIG.json [--themes THEMES.json] -y
        claudefont backups [--prune|--purge] -y
@@ -14,7 +14,7 @@ Configuration: CLAUDEFONT_CONFIG; backups/logs: CLAUDEFONT_DATA_DIR
 Close the selected app before install/uninstall. Doctor tests write access with a temporary probe.
 """
 if arguments.contains("--help") || arguments.contains("-h") || arguments.isEmpty { print(usage); exit(0) }
-if arguments == ["--version"] { print("claudefont 1.0.0"); exit(0) }
+if arguments == ["--version"] { print("claudefont 1.2.0"); exit(0) }
 var command = "", path = ProcessInfo.processInfo.environment["CLAUDEFONT_APP"] ?? "/Applications/Claude.app"
 var migrationBackup: String?, migrationSettings: String?, migrationThemes: String?
 var explicitApp = false

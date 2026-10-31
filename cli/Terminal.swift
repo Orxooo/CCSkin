@@ -11,6 +11,7 @@ enum TerminalResource {
         let path: String
         let text: String
         let props: [NSTextCheckingResult]
+        var archiveEntry: String? = nil
     }
     // Current Claude passes measured font options to ShellTerminal in ion-dist.
     // Patch both the loading placeholder and live props, leaving zoom calculation
@@ -18,11 +19,27 @@ enum TerminalResource {
     static func externalResources(_ resources: URL) throws -> [ExternalResource] {
         let relative = "ion-dist/assets/v1"
         let directory = resources.appendingPathComponent(relative)
+        let identifier = #"[A-Za-z_$][A-Za-z0-9_$]*"#
+        // New renderers pass font preferences into the size helper: hC(_,v).
+        let arguments = identifier + "(?:," + identifier + ")*"
+        let pattern = "fontFamily:(" + identifier + "),fontSize:(" + identifier + "(?:\\((?:" + arguments + ")?\\))?)(?=[,}])"
+        let regex = try NSRegularExpression(pattern:pattern)
+        let archiveURL = resources.appendingPathComponent("ion-dist.asar")
+        if exists(archiveURL) {
+            let archive = try Archive(url:archiveURL)
+            return try archive.entries.keys.sorted().filter { $0.hasPrefix("assets/v1/") && $0.hasSuffix(".js") }.compactMap { path in
+                let node = archive.entries[path]!
+                guard node["link"] == nil, node["unpacked"] as? Bool != true,
+                      (node["size"] as? Int ?? 0) <= 30_000_000 else { return nil }
+                let text = String(decoding:try archive.read(path),as:UTF8.self)
+                guard text.contains("terminal-pane-placeholder"), text.contains("ShellTerminalChunk") else { return nil }
+                let props = regex.matches(in:text,range:NSRange(text.startIndex...,in:text))
+                guard text.contains(externalMarker) || props.count == 2 else { return nil }
+                return ExternalResource(path:"ion-dist.asar",text:text,props:props,archiveEntry:path)
+            }
+        }
         guard exists(directory) else { return [] }
         try noSymlink(directory)
-        let identifier = #"[A-Za-z_$][A-Za-z0-9_$]*"#
-        let pattern = "fontFamily:(" + identifier + "),fontSize:(" + identifier + #"(?:\(\))?)(?=[,}])"#
-        let regex = try NSRegularExpression(pattern:pattern)
         return try FileManager.default.contentsOfDirectory(at:directory,includingPropertiesForKeys:nil)
             .filter { $0.pathExtension == "js" }.sorted { $0.path < $1.path }.compactMap { file in
                 try noSymlink(file)
@@ -53,7 +70,12 @@ enum TerminalResource {
             let size = original.substring(with:match.range(at:2))
             changed.replaceCharacters(in:match.range,with:"fontFamily:" + (family.isEmpty ? font : "(" + literal + "+" + font + ")") + ",fontSize:(" + size + ")*" + scale)
         }
-        return [resource.path:Data((externalMarker + "\n" + (changed as String)).utf8)]
+        let replacement = Data((externalMarker + "\n" + (changed as String)).utf8)
+        if let entry = resource.archiveEntry {
+            let archive = try Archive(url:resources.appendingPathComponent(resource.path))
+            return [resource.path:try archive.replacing([entry:replacement])]
+        }
+        return [resource.path:replacement]
     }
     static func optionsRange(_ text:String) -> Range<String.Index>? {
         guard text.contains("xterm"), !text.contains(marker) else { return nil }

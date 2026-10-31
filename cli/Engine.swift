@@ -224,17 +224,21 @@ final class FontEngine {
         let paths = String(decoding:result.output,as:UTF8.self).split(separator:"\n")
         try require(!paths.contains(where:{$0.trimmingCharacters(in:.whitespaces).hasPrefix(target.url.path + "/")}),"Close the selected Claude application before applying or restoring")
     }
-    private func signed(_ app:URL) throws {
+    private func signed(_ app:URL, changedFramework:Bool = false) throws {
         let ent = try run("/usr/bin/codesign",["-d","--entitlements",":-",app.path])
         try require(ent.status == 0,"Cannot read original signing capabilities")
         var dictionary:[String:Any] = [:]
         if !ent.output.isEmpty { dictionary = try PropertyListSerialization.propertyList(from:ent.output,format:nil) as? [String:Any] ?? [:] }
-        let identity = ProcessInfo.processInfo.environment["CLAUDEFONT_TARGET_SIGN_IDENTITY"] ?? "-"
-        if identity == "-" {
+        let configuredIdentity = ProcessInfo.processInfo.environment["CLAUDEFONT_TARGET_SIGN_IDENTITY"]
+        let identity = try changedFramework ? FrameworkIntegrity.signingIdentity(configuredIdentity) : configuredIdentity ?? "-"
+        if identity == "-" || changedFramework {
             for key in ["application-identifier","com.apple.application-identifier","com.apple.developer.team-identifier","keychain-access-groups","com.apple.security.application-groups"] { dictionary.removeValue(forKey:key) }
         }
-        // Nested frameworks retain their vendor signatures. The re-signed main
-        // executable must permit those libraries when its Team ID changes.
+        // Only a framework whose embedded ASAR digest changed is re-signed.
+        // Other nested components retain their vendor signatures.
+        if changedFramework {
+            try FrameworkIntegrity.signDependencies(app,identity:identity)
+        }
         dictionary["com.apple.security.cs.disable-library-validation"] = true
         let details = try run("/usr/bin/codesign",["-d","--verbose=4",app.path])
         let text = String(decoding:details.error,as:UTF8.self)
@@ -388,11 +392,24 @@ final class FontEngine {
             try data.write(to:destination,options:.atomic)
         }
         var info = try stagedTarget.metadata()
+        let originalInfo = info
         var table = info["ElectronAsarIntegrity"] as? [String:Any] ?? [:]
         var entry = table["Resources/app.asar"] as? [String:Any] ?? [:]
-        entry["hash"] = digest(newArchive.rawHeader); table["Resources/app.asar"] = entry; info["ElectronAsarIntegrity"] = table
+        entry["hash"] = digest(newArchive.rawHeader); table["Resources/app.asar"] = entry
+        for (path,data) in external where path.hasSuffix(".asar") {
+            guard var archiveEntry = table["Resources/" + path] as? [String:Any],
+                  archiveEntry["algorithm"] as? String == "SHA256" else {
+                throw EngineError("Secondary archive integrity metadata is missing")
+            }
+            let originalArchive = try Archive(url:baseTarget.resources.appendingPathComponent(path))
+            try require(archiveEntry["hash"] as? String == digest(originalArchive.rawHeader),"Secondary archive integrity metadata does not match")
+            archiveEntry["hash"] = digest(try Archive(data:data).rawHeader)
+            table["Resources/" + path] = archiveEntry
+        }
+        info["ElectronAsarIntegrity"] = table
         try PropertyListSerialization.data(fromPropertyList:info,format:.xml,options:0).write(to:stagedTarget.plist,options:.atomic)
-        try signed(staged)
+        let changedFramework = try FrameworkIntegrity.update(staged,from:originalInfo,to:info)
+        try signed(staged,changedFramework:changedFramework)
         try require(try treeDigest(target.url) == backup.treeHash,"Target changed while preparing styles")
         note("Backup verified. Applying renderer styles; original app is retained until startup succeeds")
         let installed = Installation(version:info["CFBundleShortVersionString"] as? String ?? "unknown",backupID:original!.id,styleHash:digest(try jsonData(StyleSchema.portable(cfg))),archiveHash:digest(newArchive.rawHeader),settings:StyleSchema.portable(cfg))
@@ -460,6 +477,7 @@ final class FontEngine {
             if probe {
                 let temp = target.resources.appendingPathComponent(".claudefont-access-" + UUID().uuidString)
                 let fd = open(temp.path,O_CREAT|O_EXCL|O_NOFOLLOW|O_WRONLY,0o600)
+                output["permissionGranted"] = fd >= 0
                 if fd >= 0 { close(fd); unlink(temp.path) }
                 else { output["permissionDenied"] = true; output["canApply"] = false; output["reason"] = "macOS denied a temporary access probe. Enable App Management access" }
             }

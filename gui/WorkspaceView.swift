@@ -631,7 +631,7 @@ struct WorkspaceView: View {
                         l("App 管理权限", "App Management access"))
                     .font(.system(size: 14, weight: .semibold))
                 Text(model.appMgmtDenied ? t("appmgmt.body") :
-                        permissionGranted == true ? l("已获得权限，可以应用设置。", "Access is available. You can apply changes.") :
+                        permissionGranted == true ? l("已确认允许修改目标应用。", "Write access to the target app is confirmed.") :
                         permissionGranted == false ? l("未能确认权限，请查看日志。", "Could not confirm access. Check the log.") :
                         l("权限由 macOS 保存。点击“检测权限”确认当前是否允许修改 Claude；首次检测可能需要授权。",
                           "macOS saves your permission. Choose Check access to verify it; the first check may ask for approval."))
@@ -644,6 +644,9 @@ struct WorkspaceView: View {
                     }
                     .buttonStyle(.link)
                     .disabled(model.busy)
+                } else if permissionGranted == false {
+                    Button(l("查看日志", "View log")) { tab = .logs }
+                        .buttonStyle(.link)
                 }
             }
             Spacer(minLength: 12)
@@ -655,7 +658,7 @@ struct WorkspaceView: View {
                     model.doctor { permissionGranted = $0 }
                 }
                 .buttonStyle(WorkspaceActionStyle())
-                .disabled(model.busy || !model.exists(model.target) || !model.appearanceValid)
+                .disabled(model.busy || !model.exists(model.target))
             }
         }
         .padding(18)
@@ -673,11 +676,16 @@ struct WorkspaceView: View {
     private var overview: some View {
         VStack(alignment: .leading, spacing: 26) {
             permissionCard
-            if model.current.state == "unsupported" && !model.current.reason.isEmpty {
+            if !model.current.canApply && !model.current.reason.isEmpty {
                 alertStrip("exclamationmark.triangle", l("当前目标无法应用", "Cannot apply to this target"), targetReason, color: accent)
                 if model.current.reason.hasPrefix("Existing foreign font patch:") {
                     Button(l("接续已有修改", "Continue previous changes")) { model.migratePrevious() }
                         .disabled(model.busy)
+                } else if model.current.reason.hasPrefix("Terminal resource adapter unavailable") && !terminalUsesDefaults {
+                    Button(l("恢复终端默认设置", "Reset terminal settings")) {
+                        model.codeSettings[.terminal] = CodeRegionSetting()
+                    }
+                    .disabled(model.busy)
                 }
             } else if model.current.state == "previous" {
                 alertStrip("arrow.triangle.branch", l("已接续旧版修改", "Previous changes connected"),
@@ -1440,10 +1448,20 @@ struct WorkspaceView: View {
     }
     // MARK: Compatibility
 
+    private var terminalUsesDefaults: Bool {
+        let setting = model.codeSettings[.terminal] ?? CodeRegionSetting()
+        return setting.font.isEmpty && setting.scale == 100
+    }
+
     private var targetReason: String {
         let reason = model.current.reason
         if reason.hasPrefix("Existing foreign font patch:") {
             return l("检测到之前的字体修改。选择“接续已有修改”，导入同版本原版备份和设置后即可继续应用。", "Earlier font changes were detected. Choose Continue previous changes to import the same-version pristine backup and settings, then apply your changes.")
+        }
+        if reason.hasPrefix("Terminal resource adapter unavailable") {
+            return terminalUsesDefaults
+                ? l("终端已恢复默认。点击“应用设置”应用其他区域的样式。", "Terminal settings are now at defaults. Apply changes to style the other regions.")
+                : l("当前 Claude 版本的终端暂未适配。恢复终端默认设置后，可继续应用其他字体、字号和配色。", "This Claude version's terminal is not supported. Reset terminal settings to apply fonts, sizes and colors to the other regions.")
         }
         return reason
     }

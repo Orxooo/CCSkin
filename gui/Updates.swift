@@ -4,7 +4,7 @@ import SwiftUI
 import Foundation
 
 enum Updater {
-    static var version: String { Bundle.main.object(forInfoDictionaryKey:"CFBundleShortVersionString") as? String ?? "1.1.0" }
+    static var version: String { Bundle.main.object(forInfoDictionaryKey:"CFBundleShortVersionString") as? String ?? "1.2.0" }
     static let releases = URL(string: "https://github.com/Orxooo/CCSkin/releases")!
     static let endpoint = URL(string: "https://api.github.com/repos/Orxooo/CCSkin/releases/latest")!
     static func isNewer(_ tag: String) -> Bool {

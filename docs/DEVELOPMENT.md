@@ -48,6 +48,22 @@ CLAUDEFONT_SWIFT_BIN="$HOME/Library/Caches/claudefont/cli/claudefont" ./claudefo
 
 配置读取路径可用 `CLAUDEFONT_CONFIG` 覆盖；备份与日志目录可用 `CLAUDEFONT_DATA_DIR` 覆盖。
 
+## 新版 Electron 的完整性摘要
+
+终端资源支持独立的 `ion-dist` 目录及 `ion-dist.asar` 归档。启用框架内摘要的 Electron 版本，会在重打包后同步更新 ASAR 哈希、`Info.plist` 和框架中的摘要；完整性校验保持开启。
+
+这类目标需要本机 Apple Development 或 Developer ID Application 签名证书。只有一个可用身份时自动选择；有多个时通过 `CLAUDEFONT_TARGET_SIGN_IDENTITY` 指定。Electron 框架、它的运行时依赖与四类 Claude Helper 使用同一证书签名，并保留 Helper 的权限与库验证设置。还原操作仍恢复完整原版应用及其原厂签名。
+
+聚焦检查（临时副本，不修改已安装的 Claude）：
+
+```sh
+swiftc cli/Support.swift cli/FrameworkIntegrity.swift tests/check_framework_integrity.swift -o /tmp/ccskin-integrity-check
+/tmp/ccskin-integrity-check
+python3 tests/engine/check.py
+```
+
+`ccskin-integrity-check /Applications/Claude.app` 可额外只读核验本机目标的摘要。
+
 ## English
 
 Development requires Apple Silicon, macOS 26+, Xcode 26+ with its macOS SDK and configured command-line tools. GUI builds need a valid Apple Development or Developer ID Application identity in Keychain.
@@ -57,3 +73,5 @@ Use the client and CLI commands above. Default app output is `~/Library/Caches/c
 The bundled CLI supports status/diagnostics, apply/restore, backup management and validated import. `status` and `backups` offer JSON output. `doctor` probes write access with a temporary file. Quit the target before apply/restore. Use `--help` for flags.
 
 `CLAUDEFONT_CONFIG` overrides the settings file; `CLAUDEFONT_DATA_DIR` overrides backups/logs. Test requirements and scope are in [VERIFICATION.md](VERIFICATION.md).
+
+Terminal resources can reside in `ion-dist` or `ion-dist.asar`. For Electron builds with an enabled native integrity digest, updates retain integrity validation and synchronize both archive hashes, the plist and the embedded digest. These targets require a local Apple signing certificate (selected automatically when unique, or via `CLAUDEFONT_TARGET_SIGN_IDENTITY`). The framework, its runtime dependencies and Claude Helpers are signed consistently, preserving Helper entitlements and library validation. Restore recovers the complete original bundle and vendor signatures.

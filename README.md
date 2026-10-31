@@ -5,11 +5,11 @@
 
 <p align="center">调整 Claude 的字体与配色，管理 Claude Code 的 Mods。</p>
 <p align="center">
-  <a href="https://github.com/Orxooo/CCSkin/releases/download/v1.1.0/CCSkin-1.1.0-macOS-arm64.zip"><b>下载 macOS 版</b></a>　·　
+  <a href="https://github.com/Orxooo/CCSkin/releases/download/v1.2.0/CCSkin-1.2.0-macOS-arm64.zip"><b>下载 macOS 版</b></a>　·　
   <a href="README.en.md">English</a>　·　
   <a href="CHANGELOG.md">更新记录</a>
 </p>
-<p align="center"><sub>macOS 26+ · Apple Silicon · 1.1.0</sub></p>
+<p align="center"><sub>macOS 26+ · Apple Silicon · 1.2.0</sub></p>
 
 <img src="docs/assets/fonts.png" alt="CC#Skin 字体与阅读排版设置" width="100%">
 

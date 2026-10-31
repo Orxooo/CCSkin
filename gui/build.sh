@@ -48,8 +48,8 @@ cat > "$app/Contents/Info.plist" <<'PLIST'
 <key>CFBundleName</key><string>CC#Skin</string>
 <key>CFBundleDisplayName</key><string>CC#Skin</string>
 <key>CFBundleExecutable</key><string>CCSkin</string>
-<key>CFBundleShortVersionString</key><string>1.1.0</string>
-<key>CFBundleVersion</key><string>9</string>
+<key>CFBundleShortVersionString</key><string>1.2.0</string>
+<key>CFBundleVersion</key><string>10</string>
 <key>CFBundlePackageType</key><string>APPL</string>
 <key>CFBundleIconFile</key><string>ccskin</string>
 <key>LSMinimumSystemVersion</key><string>26.0</string>
